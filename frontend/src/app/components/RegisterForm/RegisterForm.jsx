@@ -2,9 +2,11 @@
 import React from "react";
 import { Fetching } from "../../api/fetching";
 import { useRef } from "react";
+import { Validation } from "../../components/RegisterForm/validation";
 
 const Register = () => {
   const formRef = useRef();
+  const { errorBlurName, onBlurName, errorBlurEmail, onBlurEmail } = Validation();
 
   const { postDataRegister } = Fetching();
   return (
@@ -14,7 +16,9 @@ const Register = () => {
         type="text"
         name="name"
         placeholder="name"
+        onBlur={onBlurName}
       />
+      <p className="text-red-500">{errorBlurName}</p>
       <input
         className="border border-solid rounded-lg m-2 p-2"
         type="password"
@@ -26,7 +30,9 @@ const Register = () => {
         type="email"
         name="email"
         placeholder="email"
+        onBlur={onBlurEmail}
       />
+      <p className="text-red-500">{errorBlurEmail}</p>
       <input
         className="border border-solid rounded-lg m-2 p-2"
         type="text"
