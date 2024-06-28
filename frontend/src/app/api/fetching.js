@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 export const Fetching = () => {
   const [ejercicios, setEjercicios] = useState([]);
   const [objetivos, setObjetivos] = useState([]);
-  const userId = "66773ab057fb9cb5c3b9d4bd"; // ID de usuario hardcodeado. TRAER DESDE CONTEXTO
+  const [personalInfo, setPersonalInfo] = useState([]);
+  const userId = "667c643095199ab49cf61825"; // ID de usuario hardcodeado. TRAER DESDE CONTEXTO
 
   //Registro
   const postDataRegister = async (e) => {
@@ -129,16 +130,19 @@ export const Fetching = () => {
     } catch {
       console.log("no se pudo crear el objetivo");
     }
-  }
+  };
 
   //GET OBJETIVOS
   const getObjetivos = async () => {
-    const response = await fetch (`http://localhost:1000/${userId}/getObjetive`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `http://localhost:1000/${userId}/getObjetive`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     try {
       if (response.status === 200) {
         const datos = await response.json();
@@ -148,7 +152,7 @@ export const Fetching = () => {
     } catch {
       console.log("no se pudieron obtener los objetivos");
     }
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -166,24 +170,64 @@ export const Fetching = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch ("http://localhost:1000/personalInfo", {
+    const response = await fetch("http://localhost:1000/personalInfo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-
-    })
+    });
     try {
       if (response.status === 200) {
         const datos = await response.json();
         console.log(datos);
         return datos;
       }
-    }catch {
+    } catch {
       console.log("No se pudo cargar la información personal");
     }
-  }
+  };
 
-  return { postDataRegister, postDataLogin, postEjercicios, ejercicios, postObjetivos, objetivos, postPersonalInfo };
+  //GET PERSONAL INFO
+  const getPersonalInfo = async () => {
+    const response = await fetch(
+      `http://localhost:1000/${userId}/personalInfo`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    try {
+      if (response.status === 200) {
+        const datos = await response.json();
+        console.log(datos);
+        return datos;
+      }
+    } catch {
+      console.log("No se pudo obtener la información personal")
+    }
+  };
+
+  useEffect(()=>{
+    const fetchData = async () => {
+      const datos = await getPersonalInfo();
+      setPersonalInfo(datos)
+    }
+
+    fetchData()
+  },[userId])
+
+  return {
+    postDataRegister,
+    postDataLogin,
+    postEjercicios,
+    ejercicios,
+    postObjetivos,
+    objetivos,
+    postPersonalInfo,
+    personalInfo
+  };
 };

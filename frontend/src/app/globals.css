@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply bg-slate-200 h-full text-gray-800
+}

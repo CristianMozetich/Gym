@@ -1,22 +1,40 @@
 "use client";
 import React from "react";
 import { Fetching } from "../../api/fetching";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Divider,
+} from "@nextui-org/react";
 const ExercisesPlan = () => {
   const { ejercicios } = Fetching();
 
   return (
-    <div>
-      {ejercicios.map((ejercicio) => {
-        return (
-          <div key={ejercicio._id}>
-            <h1>{ejercicio.name}</h1>
+    <>
+      {ejercicios.map((ejercicio) => (
+        <Card key={ejercicio._id} className="max-w-[400px] m-3">
+          <CardHeader className="flex gap-3">
+            <div className="flex flex-col">
+              <p className="text-md">{ejercicio.name}</p>
+            </div>
+          </CardHeader>
+          <Divider />
+          <CardBody>
             <p>{ejercicio.description}</p>
-            <p>{ejercicio.duration}</p>
-            <p>{ejercicio.sets}</p>
-          </div>
-        );
-      })}
-    </div>
+          </CardBody>
+          <Divider />
+          <CardFooter>
+            <p isExternal>cantidad: {ejercicio.duration}</p>
+          </CardFooter>
+          <Divider />
+          <CardFooter>
+            <p isExternal>sets: {ejercicio.sets}</p>
+          </CardFooter>
+        </Card>
+      ))}
+    </>
   );
 };
 

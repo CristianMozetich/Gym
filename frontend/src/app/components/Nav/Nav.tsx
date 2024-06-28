@@ -1,0 +1,60 @@
+// components/Nav/Nav.tsx
+
+import React from "react";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  Button,
+} from "@nextui-org/react";
+
+const Nav = () => {
+  return (
+    <Navbar shouldHideOnScroll>
+      <NavbarBrand>
+        <Link className="font-bold text-inherit" href="/">Gym</Link>
+      </NavbarBrand>
+      <NavbarContent className="sm:flex hidden gap-4 justify-center">
+        <NavbarItem>
+          <Link href="/pages/entrenamiento" color="foreground">
+            Mi Entrenamiento
+          </Link>
+        </NavbarItem>
+        <NavbarItem isActive>
+          <Link href="/pages/informacion" aria-current="page">
+            Información Personal
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="/pages/objetivos">
+            Mis Objetivos
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="/pages/paneladmin">
+            Panel Admin
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem className="lg:flex hidden">
+          <Link href="/pages/login">Login</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Button
+            as={Link}
+            color="primary"
+            href="/pages/registro"
+            variant="flat"
+          >
+            Registro
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+    </Navbar>
+  );
+};
+
+export default Nav;
