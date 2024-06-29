@@ -26,11 +26,11 @@ const ExercisesPlan = () => {
           </CardBody>
           <Divider />
           <CardFooter>
-            <p isExternal>cantidad: {ejercicio.duration}</p>
+            <p>cantidad: {ejercicio.duration}</p>
           </CardFooter>
           <Divider />
           <CardFooter>
-            <p isExternal>sets: {ejercicio.sets}</p>
+            <p>sets: {ejercicio.sets}</p>
           </CardFooter>
         </Card>
       ))}

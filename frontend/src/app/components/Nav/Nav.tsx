@@ -1,12 +1,11 @@
 // components/Nav/Nav.tsx
-
+import Link from "next/link";
 import React from "react";
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
   Button,
 } from "@nextui-org/react";
 

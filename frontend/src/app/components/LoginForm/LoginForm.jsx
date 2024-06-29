@@ -1,17 +1,17 @@
 "use client";
 import React from "react";
 import { useRef } from "react";
-import { Fetching } from "../../api/fetching";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
+import { FetchLogin } from "./fetchLogin";
 const Login = () => {
   const formRef = useRef();
-  const { postDataLogin } = Fetching();
+  const { handleSubmit } = FetchLogin();
 
   return (
     <form
       ref={formRef}
-      onSubmit={postDataLogin}
+      onSubmit={handleSubmit}
       className="flex flex-col max-w-96 items-center"
     >
       <Input
