@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Nav from "./components/Nav/Nav";
+import Footer from "./components/Footer/Footer";
 import { NextUIProvider } from "@nextui-org/react";
 import ContextProvider from "./context/Contexto";
 import "./globals.css";
@@ -24,6 +25,7 @@ export default function RootLayout({
           <ContextProvider>
             <Nav />
             {children}
+            <Footer />
           </ContextProvider>
         </NextUIProvider>
       </body>

@@ -7,6 +7,7 @@ export const Contexto = createContext();
 
 export default function ContextProvider({ children }) {
   const [userId, setUserId] = useState("");
+  const [userName, setUserName] = useState("");
 
   const decodeToken = (token) => {
     try {
@@ -22,6 +23,8 @@ export default function ContextProvider({ children }) {
         userId,
         setUserId,
         decodeToken,
+        userName,
+        setUserName,
       }}
     >
       {children}

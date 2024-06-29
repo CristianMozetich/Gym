@@ -4,13 +4,13 @@ import { useContext, useEffect } from "react";
 import { Contexto } from "../../context/Contexto";
 
 const AvatarModel = () => {
-  const { userId } = useContext(Contexto);
+  const { userName } = useContext(Contexto);
 
 
   return (
     <div className="flex gap-3 items-center m-3">
       <Avatar />
-      <h1>{userId}</h1>
+      <h1 className="text-xl font-bold">Bienvenido {userName}</h1>
     </div>
   );
 };

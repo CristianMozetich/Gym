@@ -13,7 +13,7 @@ const Nav = () => {
   return (
     <Navbar shouldHideOnScroll>
       <NavbarBrand>
-        <Link className="font-bold text-inherit" href="/">Gym</Link>
+        <Link className="font-bold text-inherit" href="/">180 FUNCIONAL</Link>
       </NavbarBrand>
       <NavbarContent className="sm:flex hidden gap-4 justify-center">
         <NavbarItem>

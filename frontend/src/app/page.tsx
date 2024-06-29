@@ -3,7 +3,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col">
       <div className="flex flex-col gap-4 m-4">
-        <h1 className="text-3xl">Bienvenidos al Gym</h1>
+        <h1 className="text-3xl">Bienvenidos a 180 Funcional</h1>
         <h2>
           Tu Espacio Personalizado para Alcanzar tus Metas En nuestro portal de
           fitness personalizado, te ofrecemos una plataforma diseñada para

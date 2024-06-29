@@ -4,7 +4,7 @@ import { Contexto } from "../../context/Contexto";
 
 export const FetchLogin = () => {
   const router = useRouter();
-  const { decodeToken, setUserId } = useContext(Contexto);
+  const { decodeToken, setUserId, setUserName } = useContext(Contexto);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +24,7 @@ export const FetchLogin = () => {
         const datos = await response.json();
         const decodeData = decodeToken(datos.token);
         setUserId(decodeData.user._id);
+        setUserName(decodeData.user.name);
         console.log(decodeData.user._id); // INFORMACIÓN DEL USUARIO DECODIFICADA
         router.push("/pages/informacion");
         return datos;

@@ -85,12 +85,17 @@ export const Fetching = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
+    const payload = {
+      ...data,
+      userId: userId,
+    }
+
     const response = await fetch("http://localhost:1000/createObjetive", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
     });
     try {
       if (response.status === 200) {
@@ -118,7 +123,6 @@ export const Fetching = () => {
       if (response.status === 200) {
         const datos = await response.json();
         setObjetivos(datos);
-
         return datos;
       }
     } catch {
@@ -133,12 +137,17 @@ export const Fetching = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
+    const payload = {
+      ...data,
+      userId: userId,
+    };
+
     const response = await fetch("http://localhost:1000/personalInfo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
     });
     try {
       if (response.status === 200) {
