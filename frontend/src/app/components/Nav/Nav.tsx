@@ -8,12 +8,15 @@ import {
   NavbarItem,
   Button,
 } from "@nextui-org/react";
+import { ThemeSwitcher } from "../themeSwitcher";
 
 const Nav = () => {
   return (
     <Navbar shouldHideOnScroll>
       <NavbarBrand>
-        <Link className="font-bold text-inherit" href="/">180 FUNCIONAL</Link>
+        <Link className="font-bold text-inherit" href="/">
+          180 FUNCIONAL
+        </Link>
       </NavbarBrand>
       <NavbarContent className="sm:flex hidden gap-4 justify-center">
         <NavbarItem>
@@ -50,6 +53,9 @@ const Nav = () => {
           >
             Registro
           </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <ThemeSwitcher />
         </NavbarItem>
       </NavbarContent>
     </Navbar>

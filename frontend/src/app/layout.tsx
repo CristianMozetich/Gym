@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
 import { NextUIProvider } from "@nextui-org/react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 import ContextProvider from "./context/Contexto";
 import "./globals.css";
 
@@ -22,14 +23,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <NextUIProvider>
-          <ContextProvider>
-            <Nav />
-            {children}
-            <Footer />
-          </ContextProvider>
+          <NextThemesProvider attribute="class" defaultTheme="dark">
+            <ContextProvider>
+              <Nav />
+              {children}
+              <Footer />
+            </ContextProvider>
+          </NextThemesProvider>
         </NextUIProvider>
       </body>
     </html>
   );
 }
-
