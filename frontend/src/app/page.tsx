@@ -1,19 +1,65 @@
-import ModalComponent from "./components/modal";
+import Image from "next/image";
+import { Button, Link } from "@nextui-org/react";
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col">
-      <div className="flex flex-col gap-4 m-4">
-        <h1 className="text-3xl">Bienvenidos a 180 Funcional</h1>
-        <h2>
-          Tu Espacio Personalizado para Alcanzar tus Metas En nuestro portal de
-          fitness personalizado, te ofrecemos una plataforma diseñada para
-          ayudarte a alcanzar tus objetivos de manera efectiva y personalizada.
-          Ya sea que estés buscando perder peso, ganar músculo o simplemente
-          mejorar tu salud general, estamos aquí para acompañarte en cada paso
-          del camino.
+    <main className="min-h-screen grid grid-cols-2">
+      <div className="items-center flex justify-center m-3">
+        <Image
+          src="/img/funcional.jpg"
+          alt="logo"
+          className="rounded-xl shadow-md"
+          width={400}
+          height={400}
+        ></Image>
+      </div>
+      <div className="flex gap-4 m-3 flex-col max-w-xl justify-center pt-5">
+        <h1 className="text-8xl tracking-wider">180 Funcional</h1>
+        <h2 className="tracking-wider text-2xl">
+          En nuestro portal de fitness personalizado te ofrecemos una plataforma
+          diseñada para ayudarte a alcanzar tus objetivos de manera efectiva y
+          personalizada. Ya sea que estés buscando perder peso, ganar músculo o
+          simplemente mejorar tu salud general, estamos aquí para acompañarte en
+          cada paso del camino.
+        </h2>
+        <Button
+          className="w-32 tracking-wider"
+          as={Link}
+          color="primary"
+          href="/pages/registro"
+          variant="flat"
+        >
+          Registro
+        </Button>
+        <Button
+          className="w-32 tracking-wider"
+          as={Link}
+          color="primary"
+          href="/pages/login"
+          variant="flat"
+        >
+          Login
+        </Button>
+      </div>
+      <div className="flex flex-col gap-4 m-3 max-w-xl justify-center items-center pt-5 ml-12">
+        <h1 className="text-4xl tracking-wider">
+          Trabajamos de manera personalizada en base a tus objetivos
+        </h1>
+        <h2 className="tracking-wider text-2xl">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, vel
+          omnis vero maiores reprehenderit libero harum accusamus doloremque
+          dolorem, tenetur, officiis deleniti porro veniam ex? Dolor repellat
+          corrupti quo aspernatur.
         </h2>
       </div>
-      <ModalComponent />
+      <div className="flex items-center justify-center">
+        <Image
+          src={"/img/pesas.jpg"}
+          alt="logo"
+          width={400}
+          height={400}
+          className="rounded-xl shadow-md"
+        ></Image>
+      </div>
     </main>
   );
 }

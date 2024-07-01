@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    @apply transition-theme bg-slate-100 h-full text-gray-800 dark:bg-slate-800 dark:text-gray-100;
+    @apply transition-theme bg-slate-100 h-full text-gray-800 dark:bg-gray-900 dark:text-gray-100;
 }
 
 .transition-theme {
