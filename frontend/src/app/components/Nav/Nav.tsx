@@ -30,11 +30,6 @@ const Nav = () => {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="/pages/objetivos">
-            Mis Objetivos
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
           <Link color="foreground" href="/pages/paneladmin">
             Panel Admin
           </Link>

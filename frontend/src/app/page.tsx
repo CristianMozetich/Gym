@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Button, Link } from "@nextui-org/react";
 export default function Home() {
   return (
-<main className="min-h-screen max-w-full grid grid-cols-2">
+<main className="min-h-screen max-w-full gap-6 grid grid-cols-2">
   <div className="flex items-center justify-center m-3">
     <Image
       src="/img/funcional.jpg"
@@ -12,7 +12,7 @@ export default function Home() {
       height={400}
     ></Image>
   </div>
-  <div className="flex items-center justify-center m-3">
+  <div className="flex items-center justify-start m-3">
     <div className="flex gap-4 flex-col justify-center max-w-lg">
       <h1 className="text-8xl tracking-wider">180 Funcional</h1>
       <h2 className="tracking-wider text-2xl">
@@ -42,7 +42,7 @@ export default function Home() {
       </Button>
     </div>
   </div>
-  <div className="flex items-center justify-center m-5">
+  <div className="flex items-center justify-end m-5">
     <div className="flex flex-col gap-4 max-w-lg">
       <h1 className="text-4xl tracking-wider">
         Trabajamos de manera personalizada en base a tus objetivos

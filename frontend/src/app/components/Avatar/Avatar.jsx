@@ -8,9 +8,9 @@ const AvatarModel = () => {
 
 
   return (
-    <div className="flex gap-3 items-center m-3">
+    <div className="flex gap-3 items-center m-5">
       <Avatar />
-      <h1 className="text-xl font-bold">Bienvenido {userName}</h1>
+      <h1 className="text-3xl font-bold">Bienvenido {userName}</h1>
     </div>
   );
 };
