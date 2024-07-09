@@ -58,7 +58,7 @@ export const getExercises = async (req, res) => {
   }
 };
 
-export const createObjective = async (req, res) => {
+export const createObjetive = async (req, res) => {
   const { name, description, userId } = req.body;
 
   try {
@@ -123,3 +123,26 @@ export const getPersonalInfo = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const deleteObjetive = async (req, res) => {
+  const { userId, objectiveId } = req.params;
+
+  try {
+    const user = await userModel.findById(userId);
+    if(!user){
+      return res.status(404).send({ message: "No se encuentra el usuario" });
+    }
+
+    const objective = user.objetive.id(objectiveId);
+    if(!objective){
+      return res.status(404).send({ message: "No se encuentra el objetivo" });
+    }
+
+    user.objetive._id = objectiveId;
+    user.objetive.remove(objectiveId);
+    await user.save();
+    res.status(200).send({ message: "Objetivo eliminado" });
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+}
