@@ -2,14 +2,36 @@ import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { Contexto } from "../context/Contexto";
 
+interface EjerciciosType {
+  _id: string;
+  name: string;
+  description: string;
+  duration: number;
+  sets: number;
+}
+
+interface PersonalInfoType {
+  _id: string;
+  peso: number;
+  altura: number;
+  edad: number;
+  sexo: string;
+}
+
+interface ObjetivoType {
+  _id: string;
+  name: string;
+  description: string;
+}
+
 export const Fetching = () => {
-  const [ejercicios, setEjercicios] = useState([]);
-  const [objetivos, setObjetivos] = useState([]);
-  const [personalInfo, setPersonalInfo] = useState([]);
+  const [ejercicios, setEjercicios] = useState<EjerciciosType[]>([]);
+  const [objetivos, setObjetivos] = useState<ObjetivoType[]>([]);
+  const [personalInfo, setPersonalInfo] = useState<PersonalInfoType[]>([]);
   const { userId } = useContext(Contexto); // ID de usuario DESDE CONTEXTO
 
   //Registro
-  const postDataRegister = async (e) => {
+  const postDataRegister = async (e: any) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
@@ -33,7 +55,7 @@ export const Fetching = () => {
   };
 
   //Post Ejercicios
-  const postEjercicios = async (e) => {
+  const postEjercicios = async (e: any) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
@@ -79,7 +101,7 @@ export const Fetching = () => {
   };
 
   // POST OBJETIVOS
-  const postObjetivos = async (e) => {
+  const postObjetivos = async (e: any) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
@@ -88,7 +110,7 @@ export const Fetching = () => {
     const payload = {
       ...data,
       userId: userId,
-    }
+    };
 
     const response = await fetch("http://localhost:1000/createObjetive", {
       method: "POST",
@@ -101,6 +123,10 @@ export const Fetching = () => {
       if (response.status === 200) {
         const datos = await response.json();
         console.log(datos);
+
+        setObjetivos((...prevObjetivos) => [...prevObjetivos, datos]);
+
+        await getObjetivos();
         return datos;
       }
     } catch {
@@ -131,7 +157,7 @@ export const Fetching = () => {
   };
 
   // POST PERSONAL INFO
-  const postPersonalInfo = async (e) => {
+  const postPersonalInfo = async (e: any) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
@@ -191,6 +217,30 @@ export const Fetching = () => {
     }
   }, [userId]);
 
+
+  const deleteObjetive = async (objetiveId: string) => {
+    const response = await fetch(
+      `http://localhost:1000/deleteObjetive/${userId}/${objetiveId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    try {
+      if (response.status === 200) {
+        const datos = await response.json();
+        console.log(datos);
+        setObjetivos(objetivos.filter((obj: ObjetivoType) => obj._id !== objetiveId))
+        return datos;
+      }
+    } catch {
+      console.log("No se pudo borrar el objetivo");
+    }
+  };
+
   return {
     postDataRegister,
     postEjercicios,
@@ -199,5 +249,6 @@ export const Fetching = () => {
     objetivos,
     postPersonalInfo,
     personalInfo,
+    deleteObjetive,
   };
 };

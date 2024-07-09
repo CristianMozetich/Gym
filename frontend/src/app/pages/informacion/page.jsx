@@ -8,20 +8,24 @@ import Image from "next/image";
 
 const page = () => {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-col items-center  h-screen">
-        <div className="flex ">
-          <AvatarModel />
+    <>
+      <div className="flex items-center justify-center">
+        <AvatarModel />
+      </div>
+      <div className="grid grid-cols-2 gap-6 min-h-screen max-w-full">
+        <div className="flex flex-col items-end justify-center m-3">
+          <div className="max-w-xl m-3">
+            <h1 className="text-start tracking-wider text-xl">
+              Queremos ayudarte a alcanzar tus metas de la manera más efectiva
+              posible. Para hacerlo, necesitamos conocer un poco más sobre ti y
+              tus objetivos físicos. Por favor, completa el siguiente
+              formulario. Esto nos permitirá diseñar un plan de entrenamiento
+              personalizado que se ajuste a tus necesidades y te ayude a lograr
+              tus objetivos.
+            </h1>
+          </div>
         </div>
-        <div className="flex ">
-          <h1 className="text-start max-w-xl tracking-wider text-2xl m-3">
-            Queremos ayudarte a alcanzar tus metas de la manera más efectiva
-            posible. Para hacerlo, necesitamos conocer un poco más sobre ti y
-            tus objetivos físicos. Por favor, completa el siguiente formulario
-            con la mayor precisión posible. Esto nos permitirá diseñar un plan
-            de entrenamiento personalizado que se ajuste a tus necesidades y te
-            ayude a lograr tus metas.
-          </h1>
+        <div className="flex items-center justify-center">
           <Image
             src="/img/objetivos.jpg"
             alt="logo"
@@ -30,25 +34,23 @@ const page = () => {
             className="rounded-xl shadow-md"
           ></Image>
         </div>
-      </div>
 
-      <div className="grid grid-cols-2 w-full h-screen">
-        <div className="flex flex-col items-center ">
-          <h1>Información Personal</h1>
+        <div className="flex flex-col items-center h-screen justify-center">
+          <h1 className="text-2xl font-bold">INFORMACIÓN PERSONAL</h1>
           <PersonalInfoForm />
         </div>
-        <div className="flex flex-col gap-4 items-center ">
+        <div className="flex flex-col gap-4 items-center h-screen justify-center">
           <div>
-            <h1>cuales son tus objetivos</h1>
+            <h1 className="text-2xl font-bold">¿CUALES SON TUS OBJETIVOS?</h1>
             <ObjetiveForm />
           </div>
-          <div>
-            <h1>Mis Objetivos</h1>
+          <div className="flex flex-col items-center m-5">
+            <h1 className="text-2xl font-bold">MIS OBJETIVOS</h1>
             <Objetives />
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
