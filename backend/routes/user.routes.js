@@ -1,5 +1,5 @@
 import express from "express";
-import { newUser } from "../controllers/user.controllers.js";
+import { getUsers, newUser } from "../controllers/user.controllers.js";
 import { login } from "../controllers/user.controllers.js";
 import { createExercise, getExercises, createObjetive, getObjetive, postPersonalInfo, getPersonalInfo, deleteObjetive } from "../controllers/user.controllers.js";
 import passport from "passport";
@@ -14,6 +14,7 @@ userRouter.post("/personalInfo", postPersonalInfo);
 userRouter.get("/:userId/getExercises", getExercises);
 userRouter.get("/:userId/getObjetive", getObjetive);
 userRouter.get("/:userId/personalInfo", getPersonalInfo);
+userRouter.get("/users", getUsers);
 userRouter.delete("/deleteObjetive/:userId/:objectiveId", deleteObjetive);
 
 

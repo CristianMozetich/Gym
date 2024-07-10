@@ -129,12 +129,12 @@ export const deleteObjetive = async (req, res) => {
 
   try {
     const user = await userModel.findById(userId);
-    if(!user){
+    if (!user) {
       return res.status(404).send({ message: "No se encuentra el usuario" });
     }
 
     const objective = user.objetive.id(objectiveId);
-    if(!objective){
+    if (!objective) {
       return res.status(404).send({ message: "No se encuentra el objetivo" });
     }
 
@@ -145,4 +145,13 @@ export const deleteObjetive = async (req, res) => {
   } catch (error) {
     res.status(400).send({ message: error.message });
   }
-}
+};
+
+export const getUsers = async (req, res) => {
+  const users = await userModel.find();
+  try {
+    res.status(200).json(users);
+  } catch {
+    res.status(400).json({ message: error.message });
+  }
+};
