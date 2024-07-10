@@ -1,17 +1,14 @@
+"use client";
 import React from "react";
 import ExercisesForm from "../../components/ExercisesForm/ExercisesForm";
-import Objetives from "../../components/Objetives/Objetives";
 import PersonalInfo from "../../components/PersonalInfo/PersonalInfo";
+import GetUsersAdmin from "../../components/GetUsersAdmin/GetUsersAdmin";
 const page = () => {
   return (
-    <div className="grid grid-cols-2 gap-6">
-      <div className="flex flex-col items-center m-4 p-4">
-        <h1 className="text-3xl m-3">Objetivos</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit sit
-          hic quos obcaecati, enim ad aperiam doloremque deleniti a dolores.
-        </p>
-        <Objetives />
+    <div className="grid grid-cols-2 gap-6 min-h-screen max-w-full">
+      <div className="flex flex-col gap-4 items-center m-4 p-4">
+        <h1 className="text-3xl">Objetivos</h1>
+        <GetUsersAdmin />
       </div>
       <div className="flex flex-col items-center m-4 p-4">
         <h1 className="text-3xl m-3">Plan de entrenamiento</h1>

@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Contexto } from "../context/Contexto";
 
 interface EjerciciosType {
@@ -8,6 +7,17 @@ interface EjerciciosType {
   description: string;
   duration: number;
   sets: number;
+}
+
+interface UserType {
+  _id: string;
+  name: string;
+  email: string;
+  password: string;
+  age: number;
+  exercises: EjerciciosType[];
+  objetive: ObjetivoType[];
+  personalInfo: PersonalInfoType[];
 }
 
 interface PersonalInfoType {
@@ -28,6 +38,7 @@ export const Fetching = () => {
   const [ejercicios, setEjercicios] = useState<EjerciciosType[]>([]);
   const [objetivos, setObjetivos] = useState<ObjetivoType[]>([]);
   const [personalInfo, setPersonalInfo] = useState<PersonalInfoType[]>([]);
+  const [users, setUsers] = useState<UserType[]>([]);
   const { userId } = useContext(Contexto); // ID de usuario DESDE CONTEXTO
 
   //Registro
@@ -209,15 +220,6 @@ export const Fetching = () => {
     }
   };
 
-  useEffect(() => {
-    if (userId) {
-      getEjercicios();
-      getObjetivos();
-      getPersonalInfo();
-    }
-  }, [userId]);
-
-
   const deleteObjetive = async (objetiveId: string) => {
     const response = await fetch(
       `http://localhost:1000/deleteObjetive/${userId}/${objetiveId}`,
@@ -233,13 +235,41 @@ export const Fetching = () => {
       if (response.status === 200) {
         const datos = await response.json();
         console.log(datos);
-        setObjetivos(objetivos.filter((obj: ObjetivoType) => obj._id !== objetiveId))
+        setObjetivos(
+          objetivos.filter((obj: ObjetivoType) => obj._id !== objetiveId)
+        );
         return datos;
       }
     } catch {
       console.log("No se pudo borrar el objetivo");
     }
   };
+
+  const getUsers = async () => {
+    try {
+      const response = await fetch("http://localhost:1000/users", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 200) {
+        const datos: any = await response.json();
+        setUsers(datos);
+      }
+    } catch {
+      console.log("No se pudieron obtener los usuarios");
+    }
+  };
+
+  useEffect(() => {
+    if (userId) {
+      getEjercicios();
+      getObjetivos();
+      getPersonalInfo();
+    }
+  }, [userId]);
 
   return {
     postDataRegister,
@@ -250,5 +280,7 @@ export const Fetching = () => {
     postPersonalInfo,
     personalInfo,
     deleteObjetive,
+    users,
+    getUsers,
   };
 };

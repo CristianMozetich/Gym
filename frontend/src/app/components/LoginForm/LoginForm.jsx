@@ -18,13 +18,13 @@ const Login = () => {
         type="text"
         name="email"
         placeholder="email"
-        className="border border-solid rounded-lg m-2 p-2"
+        className="rounded-lg m-2 p-2"
       />
       <Input
         type="text"
         name="password"
         placeholder="password"
-        className="border border-solid rounded-lg m-2 p-2"
+        className="rounded-lg m-2 p-2"
       />
       <Button className="w-42" color="primary" type="submit">
         Iniciar Sesion

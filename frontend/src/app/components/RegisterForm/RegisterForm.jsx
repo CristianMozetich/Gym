@@ -14,7 +14,7 @@ const Register = () => {
   return (
     <form ref={formRef} onSubmit={postDataRegister} className="flex flex-col max-w-96 items-center">
       <Input
-        className="border border-solid rounded-lg m-2 p-2"
+        className="rounded-lg m-2 p-2"
         type="text"
         name="name"
         placeholder="name"
@@ -22,13 +22,13 @@ const Register = () => {
       />
       <p className="text-red-500">{errorBlurName}</p>
       <Input
-        className="border border-solid rounded-lg m-2 p-2"
+        className="rounded-lg m-2 p-2"
         type="password"
         name="password"
         placeholder="password"
       />
       <Input
-        className="border border-solid rounded-lg m-2 p-2"
+        className="rounded-lg m-2 p-2"
         type="email"
         name="email"
         placeholder="email"
@@ -36,7 +36,7 @@ const Register = () => {
       />
       <p className="text-red-500">{errorBlurEmail}</p>
       <Input
-        className="border border-solid rounded-lg m-2 p-2"
+        className="rounded-lg m-2 p-2"
         type="text"
         name="age"
         placeholder="age"
