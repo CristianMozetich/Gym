@@ -53,7 +53,7 @@ const MainForm: React.FC = () => {
           className="rounded-lg m-2 p-2"
         />
         <Button type="submit" className="w-42" color="primary">
-          Enviar
+          Create
         </Button>
       </form>
     </div>

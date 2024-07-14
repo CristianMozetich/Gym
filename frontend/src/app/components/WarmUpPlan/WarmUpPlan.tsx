@@ -13,7 +13,6 @@ const WarmUpPlan = () => {
 
   return (
     <div className="flex h-full max-h-screen m-4 p-4">
-      <h1 className="text-5xl font-bold text-blue-500">WarmUp</h1>
       {warmup.map((ejercicio) => (
         <Card key={ejercicio._id} className="max-w-[400px] min-w-[300px] m-3">
           <CardHeader className="flex">
