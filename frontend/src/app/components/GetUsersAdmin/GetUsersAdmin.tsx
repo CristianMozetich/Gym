@@ -3,38 +3,55 @@ import { Fetching } from "@/app/api/fetching";
 
 const GetUsersAdmin = () => {
   const { users, getUsers } = Fetching();
-  const [openObjetives, setOpenObjetives] = useState<{ [key: string]: boolean }>({});
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
 
   useEffect(() => {
     getUsers();
   }, [getUsers]);
 
   const toggleObjetive = (userId: string) => {
-    setOpenObjetives((prev) => ({
-      ...prev,
-      [userId]: !prev[userId],
-    }));
+    if (selectedUserId === userId){
+      setSelectedUserId(null);
+    } else {
+      setSelectedUserId(userId);
+    } 
+     
   };
 
+  const selectedUser = users.find(user => user._id === selectedUserId);
+
   return (
-    <div>
-      {users.map((user: any) => (
-        <div key={user._id}>
-          <button onClick={() => toggleObjetive(user._id)} className="font-bold text-xl">
-            {user.name}
-          </button>
-          {openObjetives[user._id] && (
-            <div className="flex flex-col items-center">
-              {user.objetive.map((obj: any) => (
-                <div className="flex flex-col items-center m-2 gap-2" key={obj._id}>
-                  <p className="font-bold">{obj.name}</p>
-                  <p>{obj.description}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
+    <div className="grid grid-cols-2">
+      {/* Lista de usuarios */}
+      <div className="flex flex-col">
+        {users.map((user: any) => (
+          <div key={user._id}>
+            <button
+              onClick={() => toggleObjetive(user._id)}
+              className="font-bold text-xl mb-2"
+            >
+              {user.name}
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Lista de objetivos */}
+      <div>
+        {selectedUser && (
+          <div className="grid grid-cols-1 gap-4">
+            {selectedUser.objetive.map((obj: any) => (
+              <div
+                className="flex flex-col items-center border border-solid rounded-xl p-4"
+                key={obj._id}
+              >
+                <p className="font-bold">{obj.name}</p>
+                <p>{obj.description}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

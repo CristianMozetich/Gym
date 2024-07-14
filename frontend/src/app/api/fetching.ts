@@ -7,6 +7,9 @@ interface EjerciciosType {
   description: string;
   duration: number;
   sets: number;
+  reps: number;
+  rest: number;
+  userId: string;
 }
 
 interface UserType {
@@ -15,7 +18,9 @@ interface UserType {
   email: string;
   password: string;
   age: number;
-  exercises: EjerciciosType[];
+  warmup: EjerciciosType[];
+  coolDown: EjerciciosType[];
+  main: EjerciciosType[];
   objetive: ObjetivoType[];
   personalInfo: PersonalInfoType[];
 }
@@ -35,7 +40,9 @@ interface ObjetivoType {
 }
 
 export const Fetching = () => {
-  const [ejercicios, setEjercicios] = useState<EjerciciosType[]>([]);
+  const [warmup, setWarmup] = useState<EjerciciosType[]>([]);
+  const [main, setMain] = useState<EjerciciosType[]>([]);
+  const [cooldown, setCoolDown] = useState<EjerciciosType[]>([]);
   const [objetivos, setObjetivos] = useState<ObjetivoType[]>([]);
   const [personalInfo, setPersonalInfo] = useState<PersonalInfoType[]>([]);
   const [users, setUsers] = useState<UserType[]>([]);
@@ -66,12 +73,12 @@ export const Fetching = () => {
   };
 
   //Post Ejercicios
-  const postEjercicios = async (e: any) => {
+  const postWarmup = async (e: any) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch("http://localhost:1000/createExercise", {
+    const response = await fetch("http://localhost:1000/createWarmup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -89,10 +96,57 @@ export const Fetching = () => {
     }
   };
 
+  const postMain = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+    const response = await fetch("http://localhost:1000/createMain", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    try {
+      if (response.status === 200) {
+        const datos = await response.json();
+        console.log(datos);
+        return datos;
+      }
+    } catch {
+      console.log("no se pudo crear el ejercicio");
+    }
+  };
+
+  const postCooldown = async (e: any) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+    const response = await fetch("http://localhost:1000/createCooldown", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+    try{
+      if(response.status === 200){
+        const datos = await response.json();
+        console.log(datos);
+        return datos;
+      }
+    } catch {
+      console.log("no se pudo crear el ejercicio");
+    }
+  }
+
   //Get Ejercicios
-  const getEjercicios = async () => {
+  const getWarmup = async () => {
     const response = await fetch(
-      `http://localhost:1000/${userId}/getExercises`,
+      `http://localhost:1000/${userId}/getWarmup`,
       {
         method: "GET",
         headers: {
@@ -103,7 +157,46 @@ export const Fetching = () => {
     try {
       if (response.status === 200) {
         const datos = await response.json();
-        setEjercicios(datos);
+        setWarmup(datos);
+        return datos;
+      }
+    } catch {
+      console.log("no se pudieron obtener los ejercicios");
+    }
+  };
+
+  const getMain = async () => {
+    const response = await fetch(`http://localhost:1000/${userId}/getMain`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    try {
+      if (response.status === 200) {
+        const datos = await response.json();
+        setMain(datos);
+        return datos;
+      }
+    } catch {
+      console.log("no se pudieron obtener los ejercicios");
+    }
+  }
+
+  const getCooldown = async () => {
+    const response = await fetch(
+      `http://localhost:1000/${userId}/getCooldown`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    try {
+      if (response.status === 200) {
+        const datos = await response.json();
+        setCoolDown(datos);
         return datos;
       }
     } catch {
@@ -265,7 +358,9 @@ export const Fetching = () => {
 
   useEffect(() => {
     if (userId) {
-      getEjercicios();
+      getWarmup();
+      getMain();
+      getCooldown();
       getObjetivos();
       getPersonalInfo();
     }
@@ -273,8 +368,12 @@ export const Fetching = () => {
 
   return {
     postDataRegister,
-    postEjercicios,
-    ejercicios,
+    postWarmup,
+    postMain,
+    postCooldown,
+    warmup,
+    main,
+    cooldown,
     postObjetivos,
     objetivos,
     postPersonalInfo,
