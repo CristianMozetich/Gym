@@ -1,8 +1,10 @@
-import { userModel } from "../model/user.model.js";
-import { exerciseModel } from "../model/user.model.js";
+import {  userModel } from "../model/user.model.js";
+import { warmupModel } from "../model/user.model.js";
 import { objetiveModel } from "../model/user.model.js";
 import { infoModel } from "../model/user.model.js";
 import { createToken } from "../utils/jwt.js";
+import { mainModel } from "../model/user.model.js";
+import { cooldownModel } from "../model/user.model.js";
 export const newUser = async (req, res) => {
   try {
     console.log("Usuario creado");
@@ -25,34 +27,118 @@ export const login = async (req, res) => {
   }
 };
 
-export const createExercise = async (req, res) => {
-  const { name, description, duration, sets, userId } = req.body;
-
+export const createWarmup = async (req, res) => {
+  const { name, description, duration, sets, reps, rest, userId } = req.body;
   try {
     const user = await userModel.findById(userId);
     if (!user) {
-      return res.status(404).json({ message: "usuario no encontrado" });
+      return res.status(404).json({ message: "User not found" });
     }
+    const warmup = new warmupModel({
+      name,
+      description,
+      duration,
+      sets,
+      reps,
+      rest,
+    });
 
-    const exercise = new exerciseModel({ name, description, duration, sets });
+    user.warmup.push(warmup);
 
-    user.exercises.push(exercise);
     await user.save();
-    res.status(200).json({ message: "ejercicio creado", exercise });
+
+    res.status(200).json({ message: "ejercicio creado", warmup });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
-export const getExercises = async (req, res) => {
+export const createMain = async (req, res) => {
+  const { name, description, duration, sets, reps, rest, userId } = req.body;
+  try {
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const main = new mainModel({
+      name,
+      description,
+      duration,
+      sets,
+      reps,
+      rest,
+    });
+
+    user.main.push(main);
+
+    await user.save();
+    res.status(200).json({ message: "ejercicio creado", main });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
+export const createCooldown = async (req, res) => {
+  const { name, description, duration, sets, reps, rest, userId } = req.body;
+  try {
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const cooldown = new cooldownModel({
+      name,
+      description,
+      duration,
+      sets,
+      reps,
+      rest,
+    });
+    user.cooldown.push(cooldown);
+
+    await user.save();
+    res.status(200).json({ message: "ejercicio creado", cooldown });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
+export const getWarmup = async (req, res) => {
   const { userId } = req.params; // El ID del usuario logueado se pasa como un parámetro de la URL
   try {
     const user = await userModel.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const exercises = user.exercises;
-    res.status(200).json(exercises);
+    const warmup = user.warmup;
+    res.status(200).json(warmup);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const getMain = async (req, res) => {
+  const { userId } = req.params; // El ID del usuario logueado se pasa como un parámetro de la URL
+  try {
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const main = user.main;
+    res.status(200).json(main);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const getCooldown = async (req, res) => {
+  const { userId } = req.params; // El ID del usuario logueado se pasa como un parámetro de la URL
+  try {
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const cooldown = user.cooldown;
+    res.status(200).json(cooldown);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

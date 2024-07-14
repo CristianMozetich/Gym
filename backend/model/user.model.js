@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const infoSchema = new Schema ({
+const infoSchema = new Schema({
   peso: {
     type: Number,
     required: true,
@@ -17,9 +17,20 @@ const infoSchema = new Schema ({
     type: String,
     required: true,
   },
-})
+});
 
-const exerciseSchema = new Schema({
+const objetiveSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+});
+
+const warmupSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -36,9 +47,17 @@ const exerciseSchema = new Schema({
     type: Number,
     required: true,
   },
-})
+  reps: {
+    type: Number,
+    required: true,
+  },
+  rest: {
+    type: Number,
+    required: true,
+  },
+});
 
-const objetiveSchema = new Schema({
+const mainSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -47,7 +66,51 @@ const objetiveSchema = new Schema({
     type: String,
     required: true,
   },
-})
+  duration: {
+    type: Number,
+    required: true,
+  },
+  sets: {
+    type: Number,
+    required: true,
+  },
+  reps: {
+    type: Number,
+    required: true,
+  },
+  rest: {
+    type: Number,
+    required: true,
+  },
+});
+
+const cooldownSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  duration: {
+    type: Number,
+    required: true,
+  },
+  sets: {
+    type: Number,
+    required: true,
+  },
+  reps: {
+    type: Number,
+    required: true,
+  },
+  rest: {
+    type: Number,
+    required: true,
+  },
+});
+
 
 const userSchema = new Schema({
   name: {
@@ -66,14 +129,17 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  exercises: [exerciseSchema],
-  objetive: [objetiveSchema],
   info: [infoSchema],
+  objetive: [objetiveSchema],
+  warmup: [warmupSchema],
+  main: [mainSchema],
+  cooldown: [cooldownSchema], // Array de LA CLASE
 });
 
 export const userModel = model("User", userSchema);
-export const exerciseModel = model("Exercise", exerciseSchema);
+export const warmupModel = model("Warmup", warmupSchema);
+export const mainModel = model("Main", mainSchema);
+export const cooldownModel = model("Cooldown", cooldownSchema);
 export const objetiveModel = model("Objetive", objetiveSchema);
 export const infoModel = model("Info", infoSchema);
-
 
