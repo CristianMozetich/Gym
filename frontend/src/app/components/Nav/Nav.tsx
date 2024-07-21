@@ -37,16 +37,16 @@ const Nav = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="lg:flex hidden">
-          <Link href="/pages/login">Login</Link>
+          <Link href="/pages/registro">Registrarme</Link>
         </NavbarItem>
         <NavbarItem>
           <Button
             as={Link}
             color="primary"
-            href="/pages/registro"
+            href="/pages/login"
             variant="flat"
           >
-            Registro
+            Login
           </Button>
         </NavbarItem>
         <NavbarItem>

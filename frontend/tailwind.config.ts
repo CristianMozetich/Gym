@@ -13,6 +13,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        button: "#1A5669"
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

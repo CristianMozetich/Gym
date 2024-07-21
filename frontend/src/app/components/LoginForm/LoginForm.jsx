@@ -12,21 +12,21 @@ const Login = () => {
     <form
       ref={formRef}
       onSubmit={handleSubmit}
-      className="flex flex-col max-w-96 items-center"
+      className="flex flex-col max-w-96 items-center m-4"
     >
       <Input
         type="text"
         name="email"
         placeholder="email"
-        className="rounded-lg m-2 p-2"
+        className="rounded-lg m-2 w-80"
       />
       <Input
         type="text"
         name="password"
         placeholder="password"
-        className="rounded-lg m-2 p-2"
+        className="rounded-lg m-2  w-80"
       />
-      <Button className="w-42" color="primary" type="submit">
+      <Button className="w-80 bg-button text-slate-50" type="submit">
         Iniciar Sesion
       </Button>
     </form>
