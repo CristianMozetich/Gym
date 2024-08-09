@@ -15,7 +15,7 @@ const WarmUpForm = () => {
       <form
         ref={formRef}
         onSubmit={postWarmup}
-        className="flex flex-col max-w-96 items-center"
+        className="flex flex-col max-w-96  items-center"
       >
         <Input
           name="name"

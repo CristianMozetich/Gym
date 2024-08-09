@@ -15,12 +15,9 @@ export default function Home() {
       <div className="flex items-center justify-start m-3">
         <div className="flex gap-4 flex-col justify-center max-w-lg">
           <h1 className="text-8xl tracking-wider">180 Funcional</h1>
-          <h2 className="tracking-wider text-2xl">
-            En nuestro portal de fitness personalizado te ofrecemos una
-            plataforma diseñada para ayudarte a alcanzar tus objetivos de manera
-            efectiva y personalizada. Ya sea que estés buscando perder peso,
-            ganar músculo o simplemente mejorar tu salud general, estamos aquí
-            para acompañarte en cada paso del camino.
+          <h2 className="tracking-wider text-3xl">
+            En nuestro portal de entrenamiento te ofrecemos una
+            plataforma diseñada para ayudarte a organizar tus clases de manera simple y eficaz.
           </h2>
           <Button
             className="w-32 tracking-wider"

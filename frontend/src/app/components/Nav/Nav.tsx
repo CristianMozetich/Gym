@@ -1,4 +1,5 @@
 // components/Nav/Nav.tsx
+"use client";
 import Link from "next/link";
 import React from "react";
 import {
@@ -9,6 +10,7 @@ import {
   Button,
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "../themeSwitcher";
+import { signOut } from "next-auth/react";
 
 const Nav = () => {
   return (
@@ -21,12 +23,12 @@ const Nav = () => {
       <NavbarContent className="sm:flex hidden gap-4 justify-center">
         <NavbarItem>
           <Link href="/pages/entrenamiento" color="foreground">
-            Mi Entrenamiento
+            Entrenamiento
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
           <Link href="/pages/informacion" aria-current="page">
-            Información Personal
+            Objetivos
           </Link>
         </NavbarItem>
         <NavbarItem>
@@ -40,14 +42,12 @@ const Nav = () => {
           <Link href="/pages/registro">Registrarme</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button
-            as={Link}
-            color="primary"
-            href="/pages/login"
-            variant="flat"
-          >
+          <Button as={Link} color="primary" href="/pages/login" variant="flat">
             Login
           </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <Button onClick={() => signOut()}>Sing Out</Button>
         </NavbarItem>
         <NavbarItem>
           <ThemeSwitcher />

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import PersonalInfoForm from "../../components/PersonalInfoForm/PersonalInfoForm";
 import AvatarModel from "../../components/Avatar/Avatar";
 import Objetives from "@/app/components/Objetives/Objetives";
 import ObjetiveForm from "@/app/components/ObjetiveForm/ObjetiveForm";
@@ -34,18 +33,13 @@ const page = () => {
             className="rounded-xl shadow-md"
           ></Image>
         </div>
-
-        <div className="flex flex-col items-center h-screen justify-center">
-          <h1 className="text-2xl font-bold">INFORMACIÓN PERSONAL</h1>
-          <PersonalInfoForm />
-        </div>
         <div className="flex flex-col gap-4 items-center h-screen justify-center">
           <div>
-            <h1 className="text-2xl font-bold">¿CUALES SON TUS OBJETIVOS?</h1>
+            <h1 className="text-2xl font-bold">OBJETIVOS DE LA CLASE</h1>
             <ObjetiveForm />
           </div>
           <div className="flex flex-col items-center m-5">
-            <h1 className="text-2xl font-bold">MIS OBJETIVOS</h1>
+            <h1 className="text-2xl font-bold">OBJETIVOS</h1>
             <Objetives />
           </div>
         </div>

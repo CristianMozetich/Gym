@@ -376,8 +376,6 @@ export const Fetching = () => {
     cooldown,
     postObjetivos,
     objetivos,
-    postPersonalInfo,
-    personalInfo,
     deleteObjetive,
     users,
     getUsers,

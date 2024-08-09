@@ -12,7 +12,7 @@ const CoolDownForm: React.FC = () => {
       <h1>Cool Down</h1>
       <form
         onSubmit={postCooldown}
-        className="flex flex-col max-w-96 items-center"
+        className="flex flex-col max-w-96  items-center"
         ref={formRef}
       >
         <Input
