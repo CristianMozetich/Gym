@@ -9,8 +9,6 @@ import {
   getCooldown,
   createObjetive,
   getObjetive,
-  postPersonalInfo,
-  getPersonalInfo,
   deleteObjetive,
   getUsers,
   newUser,
@@ -24,12 +22,10 @@ userRouter.post("/createWarmup", createWarmup);
 userRouter.post("/createMain", createMain);
 userRouter.post("/createCooldown", createCooldown);
 userRouter.post("/createObjetive", createObjetive);
-userRouter.post("/personalInfo", postPersonalInfo);
 userRouter.get("/:userId/getWarmup", getWarmup);
 userRouter.get("/:userId/getMain", getMain);
 userRouter.get("/:userId/getCooldown", getCooldown);
 userRouter.get("/:userId/getObjetive", getObjetive);
-userRouter.get("/:userId/personalInfo", getPersonalInfo);
 userRouter.get("/users", getUsers);
 userRouter.delete("/deleteObjetive/:userId/:objectiveId", deleteObjetive);
 

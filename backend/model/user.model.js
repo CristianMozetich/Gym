@@ -1,23 +1,5 @@
 import { Schema, model } from "mongoose";
 
-const infoSchema = new Schema({
-  peso: {
-    type: Number,
-    required: true,
-  },
-  altura: {
-    type: Number,
-    required: true,
-  },
-  edad: {
-    type: Number,
-    required: true,
-  },
-  sexo: {
-    type: String,
-    required: true,
-  },
-});
 
 const objetiveSchema = new Schema({
   name: {
@@ -125,7 +107,6 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  info: [infoSchema],
   objetive: [objetiveSchema],
   warmup: [warmupSchema],
   main: [mainSchema],
@@ -137,5 +118,4 @@ export const warmupModel = model("Warmup", warmupSchema);
 export const mainModel = model("Main", mainSchema);
 export const cooldownModel = model("Cooldown", cooldownSchema);
 export const objetiveModel = model("Objetive", objetiveSchema);
-export const infoModel = model("Info", infoSchema);
 

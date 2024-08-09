@@ -1,7 +1,6 @@
 import {  userModel } from "../model/user.model.js";
 import { warmupModel } from "../model/user.model.js";
 import { objetiveModel } from "../model/user.model.js";
-import { infoModel } from "../model/user.model.js";
 import { createToken } from "../utils/jwt.js";
 import { mainModel } from "../model/user.model.js";
 import { cooldownModel } from "../model/user.model.js";
@@ -173,39 +172,6 @@ export const getObjetive = async (req, res) => {
     const objective = user.objetive;
     res.status(200).json(objective);
   } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-export const postPersonalInfo = async (req, res) => {
-  const { peso, altura, edad, sexo, userId } = req.body;
-
-  try {
-    const user = await userModel.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
-    const info = new infoModel({ peso, altura, edad, sexo });
-
-    user.info.push(info);
-    await user.save();
-    res.status(200).json({ message: "Información guardada", info });
-  } catch {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-export const getPersonalInfo = async (req, res) => {
-  const { userId } = req.params;
-
-  try {
-    const user = await userModel.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    const userInfo = user.info;
-    res.status(200).json(userInfo);
-  } catch {
     res.status(400).json({ message: error.message });
   }
 };
