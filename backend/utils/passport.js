@@ -15,7 +15,7 @@ const initializePassport = () => {
         passwordField: "password",
       },
       async (req, email, password, done) => {
-        const { name, age } = req.body;
+        const { name } = req.body;
         try {
           const user = await userModel.findOne({ email });
           if (user) {
@@ -26,7 +26,6 @@ const initializePassport = () => {
               name,
               password: passwordHash,
               email,
-              age,
             });
             const result = newUser;
             done(null, result);
