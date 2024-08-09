@@ -125,10 +125,6 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  age: {
-    type: String,
-    required: true,
-  },
   info: [infoSchema],
   objetive: [objetiveSchema],
   warmup: [warmupSchema],
