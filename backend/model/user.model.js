@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
 
-
 const objetiveSchema = new Schema({
   name: {
     type: String,
@@ -12,6 +11,7 @@ const objetiveSchema = new Schema({
   },
 });
 
+
 const warmupSchema = new Schema({
   name: {
     type: String,
@@ -22,19 +22,15 @@ const warmupSchema = new Schema({
     required: true,
   },
   duration: {
-    type: Number,
+    type: String,
     required: true,
   },
   sets: {
-    type: Number,
-    required: true,
-  },
-  reps: {
-    type: Number,
+    type: String,
     required: true,
   },
   rest: {
-    type: Number,
+    type: String,
     required: true,
   },
 });
@@ -49,19 +45,15 @@ const mainSchema = new Schema({
     required: true,
   },
   duration: {
-    type: Number,
+    type: String,
     required: true,
   },
   sets: {
-    type: Number,
-    required: true,
-  },
-  reps: {
-    type: Number,
+    type: String,
     required: true,
   },
   rest: {
-    type: Number,
+    type: String,
     required: true,
   },
 });
@@ -76,23 +68,18 @@ const cooldownSchema = new Schema({
     required: true,
   },
   duration: {
-    type: Number,
+    type: String,
     required: true,
   },
   sets: {
-    type: Number,
-    required: true,
-  },
-  reps: {
-    type: Number,
+    type: String,
     required: true,
   },
   rest: {
-    type: Number,
+    type: String,
     required: true,
   },
 });
-
 
 const userSchema = new Schema({
   name: {
@@ -107,10 +94,12 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  objetive: [objetiveSchema],
-  warmup: [warmupSchema],
-  main: [mainSchema],
-  cooldown: [cooldownSchema], // Array de LA CLASE
+  clase: {
+    objetive: [objetiveSchema],
+    warmup: [warmupSchema],
+    main: [mainSchema],
+    cooldown: [cooldownSchema],
+  }, 
 });
 
 export const userModel = model("User", userSchema);
@@ -118,4 +107,3 @@ export const warmupModel = model("Warmup", warmupSchema);
 export const mainModel = model("Main", mainSchema);
 export const cooldownModel = model("Cooldown", cooldownSchema);
 export const objetiveModel = model("Objetive", objetiveSchema);
-

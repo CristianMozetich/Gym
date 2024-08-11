@@ -27,7 +27,7 @@ export const login = async (req, res) => {
 };
 
 export const createWarmup = async (req, res) => {
-  const { name, description, duration, sets, reps, rest, userId } = req.body;
+  const { name, description, duration, sets, rest, userId } = req.body;
   try {
     const user = await userModel.findById(userId);
     if (!user) {
@@ -38,11 +38,10 @@ export const createWarmup = async (req, res) => {
       description,
       duration,
       sets,
-      reps,
       rest,
     });
 
-    user.warmup.push(warmup);
+    user.clase.warmup.push(warmup);
 
     await user.save();
 
@@ -53,7 +52,7 @@ export const createWarmup = async (req, res) => {
 };
 
 export const createMain = async (req, res) => {
-  const { name, description, duration, sets, reps, rest, userId } = req.body;
+  const { name, description, duration, sets, rest, userId } = req.body;
   try {
     const user = await userModel.findById(userId);
     if (!user) {
@@ -64,11 +63,10 @@ export const createMain = async (req, res) => {
       description,
       duration,
       sets,
-      reps,
       rest,
     });
 
-    user.main.push(main);
+    user.clase.main.push(main);
 
     await user.save();
     res.status(200).json({ message: "ejercicio creado", main });
@@ -78,7 +76,7 @@ export const createMain = async (req, res) => {
 }
 
 export const createCooldown = async (req, res) => {
-  const { name, description, duration, sets, reps, rest, userId } = req.body;
+  const { name, description, duration, sets, rest, userId } = req.body;
   try {
     const user = await userModel.findById(userId);
     if (!user) {
@@ -89,10 +87,9 @@ export const createCooldown = async (req, res) => {
       description,
       duration,
       sets,
-      reps,
       rest,
     });
-    user.cooldown.push(cooldown);
+    user.clase.cooldown.push(cooldown);
 
     await user.save();
     res.status(200).json({ message: "ejercicio creado", cooldown });
@@ -108,7 +105,7 @@ export const getWarmup = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const warmup = user.warmup;
+    const warmup = user.clase.warmup;
     res.status(200).json(warmup);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -122,7 +119,7 @@ export const getMain = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const main = user.main;
+    const main = user.clase.main;
     res.status(200).json(main);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -136,7 +133,7 @@ export const getCooldown = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const cooldown = user.cooldown;
+    const cooldown = user.clase.cooldown;
     res.status(200).json(cooldown);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -154,7 +151,7 @@ export const createObjetive = async (req, res) => {
 
     const objective = new objetiveModel({ name, description });
 
-    user.objetive.push(objective);
+    user.clase.objetive.push(objective);
     await user.save();
     res.status(200).json({ message: "Objetivo creado", objective });
   } catch (error) {
@@ -169,7 +166,7 @@ export const getObjetive = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const objective = user.objetive;
+    const objective = user.clase.objetive;
     res.status(200).json(objective);
   } catch (error) {
     res.status(400).json({ message: error.message });
