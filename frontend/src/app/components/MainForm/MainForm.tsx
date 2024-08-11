@@ -25,25 +25,19 @@ const MainForm: React.FC = () => {
         <Input
           placeholder="duration"
           name="duration"
-          type="number"
+          type="string"
           className="rounded-lg m-2 p-2"
         />
         <Input
           placeholder="sets"
           name="sets"
-          type="number"
-          className="rounded-lg m-2 p-2"
-        />
-        <Input
-          placeholder="reps"
-          name="reps"
-          type="number"
+          type="string"
           className="rounded-lg m-2 p-2"
         />
         <Input
           placeholder="rest"
           name="rest"
-          type="number"
+          type="string"
           className="rounded-lg m-2 p-2"
         />
         <Input

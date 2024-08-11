@@ -32,25 +32,19 @@ const WarmUpForm = () => {
         <Input
           name="duration"
           className="rounded-lg m-2 p-2"
-          type="number"
+          type="string"
           placeholder="duration"
         />
         <Input
           name="sets"
           className="rounded-lg m-2 p-2"
-          type="number"
+          type="string"
           placeholder="sets"
-        />
-        <Input
-          name="reps"
-          className="rounded-lg m-2 p-2"
-          type="number"
-          placeholder="reps"
         />
         <Input
           name="rest"
           className="rounded-lg m-2 p-2"
-          type="number"
+          type="string"
           placeholder="rest"
         />
         <Input

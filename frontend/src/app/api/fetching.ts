@@ -12,27 +12,22 @@ interface EjerciciosType {
   userId: string;
 }
 
-interface UserType {
+interface ClaseType {
+  _id: string;
+  objetive: ObjetivoType[];
+  warmup: EjerciciosType[];
+  main: EjerciciosType[];
+  cooldown: EjerciciosType[];
+}
+
+export interface UserType {
   _id: string;
   name: string;
   email: string;
   password: string;
   age: number;
-  warmup: EjerciciosType[];
-  coolDown: EjerciciosType[];
-  main: EjerciciosType[];
-  objetive: ObjetivoType[];
-  personalInfo: PersonalInfoType[];
+  clase: ClaseType;
 }
-
-interface PersonalInfoType {
-  _id: string;
-  peso: number;
-  altura: number;
-  edad: number;
-  sexo: string;
-}
-
 interface ObjetivoType {
   _id: string;
   name: string;
@@ -44,7 +39,6 @@ export const Fetching = () => {
   const [main, setMain] = useState<EjerciciosType[]>([]);
   const [cooldown, setCoolDown] = useState<EjerciciosType[]>([]);
   const [objetivos, setObjetivos] = useState<ObjetivoType[]>([]);
-  const [personalInfo, setPersonalInfo] = useState<PersonalInfoType[]>([]);
   const [users, setUsers] = useState<UserType[]>([]);
   const { userId } = useContext(Contexto); // ID de usuario DESDE CONTEXTO
 
@@ -260,59 +254,6 @@ export const Fetching = () => {
     }
   };
 
-  // POST PERSONAL INFO
-  const postPersonalInfo = async (e: any) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-
-    const payload = {
-      ...data,
-      userId: userId,
-    };
-
-    const response = await fetch("http://localhost:1000/personalInfo", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-    try {
-      if (response.status === 200) {
-        const datos = await response.json();
-        console.log(datos);
-        return datos;
-      }
-    } catch {
-      console.log("No se pudo cargar la información personal");
-    }
-  };
-
-  //GET PERSONAL INFO
-  const getPersonalInfo = async () => {
-    const response = await fetch(
-      `http://localhost:1000/${userId}/personalInfo`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    try {
-      if (response.status === 200) {
-        const datos = await response.json();
-        setPersonalInfo(datos);
-        return datos;
-      }
-    } catch {
-      console.log("No se pudo obtener la información personal");
-    }
-  };
-
   const deleteObjetive = async (objetiveId: string) => {
     const response = await fetch(
       `http://localhost:1000/deleteObjetive/${userId}/${objetiveId}`,
@@ -338,31 +279,12 @@ export const Fetching = () => {
     }
   };
 
-  const getUsers = async () => {
-    try {
-      const response = await fetch("http://localhost:1000/users", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.status === 200) {
-        const datos: any = await response.json();
-        setUsers(datos);
-      }
-    } catch {
-      console.log("No se pudieron obtener los usuarios");
-    }
-  };
-
   useEffect(() => {
     if (userId) {
       getWarmup();
       getMain();
       getCooldown();
       getObjetivos();
-      getPersonalInfo();
     }
   }, [userId]);
 
@@ -378,6 +300,5 @@ export const Fetching = () => {
     objetivos,
     deleteObjetive,
     users,
-    getUsers,
   };
 };

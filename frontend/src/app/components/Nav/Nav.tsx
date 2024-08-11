@@ -21,14 +21,9 @@ const Nav = () => {
         </Link>
       </NavbarBrand>
       <NavbarContent className="sm:flex hidden gap-4 justify-center">
-        <NavbarItem>
+        <NavbarItem isActive>
           <Link href="/pages/entrenamiento" color="foreground">
             Entrenamiento
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="/pages/informacion" aria-current="page">
-            Objetivos
           </Link>
         </NavbarItem>
         <NavbarItem>
@@ -39,7 +34,10 @@ const Nav = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="lg:flex hidden">
-          <Link href="/pages/registro">Registrarme</Link>
+          <Button>
+            {" "}
+            <Link href="/pages/registro">Registrarme</Link>
+          </Button>
         </NavbarItem>
         <NavbarItem>
           <Button as={Link} color="primary" href="/pages/login" variant="flat">

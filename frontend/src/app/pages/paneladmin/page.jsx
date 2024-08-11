@@ -1,15 +1,18 @@
 "use client";
 import React from "react";
-import GetUsersAdmin from "../../components/GetUsersAdmin/GetUsersAdmin";
 import WarmUpForm from "../../components/WarmUpForm/WarmUp";
 import MainForm from "../../components/MainForm/MainForm";
 import CoolDownForm from "@/app/components/CoolDownForm/CoolDownForm";
+import ObjetiveForm from "@/app/components/ObjetiveForm/ObjetiveForm";
+import Objetives from "@/app/components/Objetives/Objetives";
 const page = () => {
   return (
     <div className="gap-6 min-h-screen max-w-full">
       <div className="flex flex-col gap-4cd m-4 p-4">
+        <h1 className="text-3xl">Crea tus Objetivos</h1>
+        <ObjetiveForm />
         <h1 className="text-3xl">Objetivos</h1>
-        <GetUsersAdmin />
+        <Objetives />
       </div>
       <div className="flex flex-col gap-4 m-4 p-4">
         <h1 className="text-3xl m-3">Plan de entrenamiento</h1>

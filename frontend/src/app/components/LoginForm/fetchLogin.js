@@ -26,7 +26,7 @@ export const FetchLogin = () => {
         setUserId(decodeData.user._id);
         setUserName(decodeData.user.name);
         console.log(decodeData.user._id); // INFORMACIÓN DEL USUARIO DECODIFICADA
-        router.push("/pages/informacion");
+        router.push("/pages/paneladmin");
         return datos;
       }
     } catch (error) {

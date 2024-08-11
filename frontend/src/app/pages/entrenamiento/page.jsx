@@ -33,19 +33,19 @@ const Page = () => {
         >
           <div className="flex-none min-w-full flex justify-center items-center m-4 p-4">
             <div>
-              <h1 className="text-5xl font-bold text-blue-500 mb-4">WarmUp</h1>
+              <h1 className="text-6xl font-bold text-blue-500 mb-4">WarmUp</h1>
               {sections[0]}
             </div>
           </div>
           <div className="flex-none min-w-full flex justify-center items-center m-4 p-4">
             <div>
-              <h1 className="text-5xl font-bold text-blue-500 mb-4">Main</h1>
+              <h1 className="text-6xl font-bold text-blue-500 mb-4">Main</h1>
               {sections[1]}
             </div>
           </div>
           <div className="flex-none min-w-full flex justify-center items-center m-4 p-4">
             <div>
-              <h1 className="text-5xl font-bold text-blue-500 mb-4">CoolDown</h1>
+              <h1 className="text-6xl font-bold text-blue-500 mb-4">CoolDown</h1>
               {sections[2]}
             </div>
           </div>
