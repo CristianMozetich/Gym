@@ -18,16 +18,22 @@ const WarmUpForm = () => {
         className="flex flex-col max-w-96  items-center"
       >
         <Input
-          name="name"
+          name="ejercicioUno"
           className="rounded-lg m-2 p-2"
           type="text"
-          placeholder="name"
+          placeholder="Ejercicio 1"
         />
         <Input
-          name="description"
+          name="ejercicioDos"
           className="rounded-lg m-2 p-2"
           type="text"
-          placeholder="description"
+          placeholder="Ejercicio 2"
+        />
+        <Input
+          name="ejercicioTres"
+          className="rounded-lg m-2 p-2"
+          type="text"
+          placeholder="Ejercicio 3"
         />
         <Input
           name="duration"
@@ -46,12 +52,6 @@ const WarmUpForm = () => {
           className="rounded-lg m-2 p-2"
           type="string"
           placeholder="rest"
-        />
-        <Input
-          name="userId"
-          type="text"
-          placeholder="userId"
-          className="rounded-lg m-2 p-2"
         />
         <Button type="submit" className="w-42" color="primary">
           Create

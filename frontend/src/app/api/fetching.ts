@@ -3,8 +3,9 @@ import { Contexto } from "../context/Contexto";
 
 interface EjerciciosType {
   _id: string;
-  name: string;
-  description: string;
+  ejercicioUno: string;
+  ejercicioDos: string;
+  ejercicioTres: string;
   duration: number;
   sets: number;
   reps: number;
@@ -72,7 +73,7 @@ export const Fetching = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch("http://localhost:1000/createWarmup", {
+    const response = await fetch(`http://localhost:1000/${userId}/createWarmup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +96,7 @@ export const Fetching = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch("http://localhost:1000/createMain", {
+    const response = await fetch(`http://localhost:1000/${userId}/createMain`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -119,7 +120,7 @@ export const Fetching = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch("http://localhost:1000/createCooldown", {
+    const response = await fetch(`http://localhost:1000/${userId}/createCooldown`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -210,7 +211,7 @@ export const Fetching = () => {
       userId: userId,
     };
 
-    const response = await fetch("http://localhost:1000/createObjetive", {
+    const response = await fetch(`http://localhost:1000/${userId}/createObjetive`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

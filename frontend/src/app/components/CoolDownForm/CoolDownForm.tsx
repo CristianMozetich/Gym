@@ -16,16 +16,22 @@ const CoolDownForm: React.FC = () => {
         ref={formRef}
       >
         <Input
-          placeholder="name"
-          name="name"
-          type="text"
+          name="ejercicioUno"
           className="rounded-lg m-2 p-2"
+          type="text"
+          placeholder="Ejercicio 1"
         />
         <Input
-          placeholder="description"
-          name="description"
-          type="text"
+          name="ejercicioDos"
           className="rounded-lg m-2 p-2"
+          type="text"
+          placeholder="Ejercicio 2"
+        />
+        <Input
+          name="ejercicioTres"
+          className="rounded-lg m-2 p-2"
+          type="text"
+          placeholder="Ejercicio 3"
         />
         <Input
           placeholder="duration"
@@ -37,18 +43,6 @@ const CoolDownForm: React.FC = () => {
           placeholder="sets"
           name="sets"
           type="string"
-          className="rounded-lg m-2 p-2"
-        />
-        <Input
-          placeholder="rest"
-          name="rest"
-          type="string"
-          className="rounded-lg m-2 p-2"
-        />
-        <Input
-          name="userId"
-          type="text"
-          placeholder="userId"
           className="rounded-lg m-2 p-2"
         />
         <Button type="submit" className="w-42" color="primary">

@@ -17,8 +17,9 @@ const CoolDownPlan = () => {
         <Card key={ejercicio._id} className="max-w-[600px] min-w-[300px] m-3">
           <CardHeader className="flex">
             <div className="flex flex-col gap-4 m-3">
-              <p className="text-2xl">{ejercicio.name}</p>
-              <p className="text-2xl">{ejercicio.description}</p>
+              <p className="text-2xl">{ejercicio.ejercicioUno}</p>
+              <p className="text-2xl">{ejercicio.ejercicioDos}</p>
+              <p className="text-2xl">{ejercicio.ejercicioTres}</p>
             </div>
           </CardHeader>
           <Divider />
@@ -34,15 +35,6 @@ const CoolDownPlan = () => {
               </p>
             </div>
           </CardBody>
-          <Divider />
-          <CardFooter>
-            <div className="m-3 flex flex-col">
-              <p className="text-2xl">
-                <span className="text-blue-400">Descanso: </span>
-                {ejercicio.rest}
-              </p>
-            </div>
-          </CardFooter>
         </Card>
       ))}
     </div>

@@ -10,17 +10,23 @@ const MainForm: React.FC = () => {
     <div>
       <h1>Main</h1>
       <form ref={formRef} onSubmit={postMain} className="flex flex-col max-w-96 items-center">
-        <Input
-          placeholder="name"
-          name="name"
-          type="text"
+      <Input
+          name="ejercicioUno"
           className="rounded-lg m-2 p-2"
+          type="text"
+          placeholder="Ejercicio 1"
         />
         <Input
-          placeholder="description"
-          name="description"
-          type="text"
+          name="ejercicioDos"
           className="rounded-lg m-2 p-2"
+          type="text"
+          placeholder="Ejercicio 2"
+        />
+        <Input
+          name="ejercicioTres"
+          className="rounded-lg m-2 p-2"
+          type="text"
+          placeholder="Ejercicio 3"
         />
         <Input
           placeholder="duration"
@@ -38,12 +44,6 @@ const MainForm: React.FC = () => {
           placeholder="rest"
           name="rest"
           type="string"
-          className="rounded-lg m-2 p-2"
-        />
-        <Input
-          name="userId"
-          type="text"
-          placeholder="userId"
           className="rounded-lg m-2 p-2"
         />
         <Button type="submit" className="w-42" color="primary">
