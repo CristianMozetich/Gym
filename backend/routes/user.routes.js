@@ -18,10 +18,10 @@ const userRouter = express.Router();
 
 userRouter.post("/register", passport.authenticate("register"), newUser);
 userRouter.post("/login", passport.authenticate("login"), login);
-userRouter.post("/createWarmup", createWarmup);
-userRouter.post("/createMain", createMain);
-userRouter.post("/createCooldown", createCooldown);
-userRouter.post("/createObjetive", createObjetive);
+userRouter.post("/:userId/createWarmup", createWarmup);
+userRouter.post("/:userId/createMain", createMain);
+userRouter.post("/:userId/createCooldown", createCooldown);
+userRouter.post("/:userId/createObjetive", createObjetive);
 userRouter.get("/:userId/getWarmup", getWarmup);
 userRouter.get("/:userId/getMain", getMain);
 userRouter.get("/:userId/getCooldown", getCooldown);

@@ -27,15 +27,17 @@ export const login = async (req, res) => {
 };
 
 export const createWarmup = async (req, res) => {
-  const { name, description, duration, sets, rest, userId } = req.body;
+  const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets, rest } = req.body;
+  const { userId } = req.params;
   try {
     const user = await userModel.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
     const warmup = new warmupModel({
-      name,
-      description,
+      ejercicioUno,
+      ejercicioDos,
+      ejercicioTres,
       duration,
       sets,
       rest,
@@ -52,15 +54,17 @@ export const createWarmup = async (req, res) => {
 };
 
 export const createMain = async (req, res) => {
-  const { name, description, duration, sets, rest, userId } = req.body;
+  const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets, rest } = req.body;
+  const { userId } = req.params;
   try {
     const user = await userModel.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
     const main = new mainModel({
-      name,
-      description,
+      ejercicioUno,
+      ejercicioDos,
+      ejercicioTres,
       duration,
       sets,
       rest,
@@ -76,18 +80,19 @@ export const createMain = async (req, res) => {
 }
 
 export const createCooldown = async (req, res) => {
-  const { name, description, duration, sets, rest, userId } = req.body;
+  const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets } = req.body;
+  const { userId } = req.params;
   try {
     const user = await userModel.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
     const cooldown = new cooldownModel({
-      name,
-      description,
+      ejercicioUno,
+      ejercicioDos,
+      ejercicioTres,
       duration,
       sets,
-      rest,
     });
     user.clase.cooldown.push(cooldown);
 
@@ -141,7 +146,8 @@ export const getCooldown = async (req, res) => {
 };
 
 export const createObjetive = async (req, res) => {
-  const { name, description, userId } = req.body;
+  const { name, description } = req.body;
+  const { userId } = req.params;
 
   try {
     const user = await userModel.findById(userId);

@@ -13,11 +13,15 @@ const objetiveSchema = new Schema({
 
 
 const warmupSchema = new Schema({
-  name: {
+  ejercicioUno: {
     type: String,
     required: true,
   },
-  description: {
+  ejercicioDos: {
+    type: String,
+    required: true,
+  },
+  ejercicioTres: {
     type: String,
     required: true,
   },
@@ -36,11 +40,15 @@ const warmupSchema = new Schema({
 });
 
 const mainSchema = new Schema({
-  name: {
+  ejercicioUno: {
     type: String,
     required: true,
   },
-  description: {
+  ejercicioDos: {
+    type: String,
+    required: true,
+  },
+  ejercicioTres: {
     type: String,
     required: true,
   },
@@ -59,11 +67,15 @@ const mainSchema = new Schema({
 });
 
 const cooldownSchema = new Schema({
-  name: {
+  ejercicioUno: {
     type: String,
     required: true,
   },
-  description: {
+  ejercicioDos: {
+    type: String,
+    required: true,
+  },
+  ejercicioTres: {
     type: String,
     required: true,
   },
@@ -72,10 +84,6 @@ const cooldownSchema = new Schema({
     required: true,
   },
   sets: {
-    type: String,
-    required: true,
-  },
-  rest: {
     type: String,
     required: true,
   },
