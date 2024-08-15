@@ -202,36 +202,38 @@ export const Fetching = () => {
   // POST OBJETIVOS
   const postObjetivos = async (e: any) => {
     e.preventDefault();
-
+  
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-
+  
     const payload = {
       ...data,
       userId: userId,
     };
-
-    const response = await fetch(`http://localhost:1000/${userId}/createObjetive`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+  
     try {
-      if (response.status === 200) {
-        const datos = await response.json();
-        console.log(datos);
-
-        setObjetivos((...prevObjetivos) => [...prevObjetivos, datos]);
-
-        await getObjetivos();
-        return datos;
+      const response = await fetch(`http://localhost:1000/${userId}/createObjetive`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.statusText}`);
       }
-    } catch {
-      console.log("no se pudo crear el objetivo");
+  
+      const datos = await response.json();
+  
+      setObjetivos((prevObjetivos) => [...prevObjetivos, datos]);
+  
+      return datos;
+    } catch (error) {
+      console.error("No se pudo crear el objetivo:", error);
     }
   };
+  
 
   //GET OBJETIVOS
   const getObjetivos = async () => {
@@ -285,7 +287,6 @@ export const Fetching = () => {
       getWarmup();
       getMain();
       getCooldown();
-      getObjetivos();
     }
   }, [userId]);
 
@@ -300,6 +301,7 @@ export const Fetching = () => {
     postObjetivos,
     objetivos,
     deleteObjetive,
+    getObjetivos,
     users,
   };
 };

@@ -8,13 +8,17 @@ import Objetives from "@/app/components/Objetives/Objetives";
 const page = () => {
   return (
     <div className="gap-6 min-h-screen max-w-full">
-      <div className="flex gap-8 m-4 p-4">
-        <div className="flex flex-col">
+      <div className="flex gap-2 m-2 p-3">
+        <div className="flex flex-col w-1/2 p-2 m-2">
           <h1 className="text-3xl">Crea tus Objetivos</h1>
           <ObjetiveForm />
         </div>
-        <h1 className="text-3xl">Objetivos</h1>
-        <Objetives />
+        <div className="w-1/2">
+          <h1 className="text-3xl m-2 p-2">Objetivos</h1>
+          <div className="border rounded-xl flex flex-col items-center">
+            <Objetives />
+          </div>
+        </div>
       </div>
       <div className="flex flex-col gap-4 m-4 p-4">
         <h1 className="text-3xl m-3">Plan de entrenamiento</h1>
