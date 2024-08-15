@@ -188,13 +188,13 @@ export const deleteObjetive = async (req, res) => {
       return res.status(404).send({ message: "No se encuentra el usuario" });
     }
 
-    const objective = user.objetive.id(objectiveId);
+    const objective = user.clase.objetive.id(objectiveId);
     if (!objective) {
       return res.status(404).send({ message: "No se encuentra el objetivo" });
     }
 
-    user.objetive._id = objectiveId;
-    user.objetive.remove(objectiveId);
+    user.clase.objetive._id = objectiveId;
+    user.clase.objetive.remove(objectiveId);
     await user.save();
     res.status(200).send({ message: "Objetivo eliminado" });
   } catch (error) {
