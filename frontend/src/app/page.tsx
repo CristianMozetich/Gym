@@ -16,8 +16,8 @@ export default function Home() {
         <div className="flex gap-4 flex-col justify-center max-w-lg">
           <h1 className="text-8xl tracking-wider">180 Funcional</h1>
           <h2 className="tracking-wider text-3xl">
-            En nuestro portal de entrenamiento te ofrecemos una
-            plataforma diseñada para ayudarte a organizar tus clases de manera simple y eficaz.
+            En nuestro portal te ofrecemos una
+            plataforma diseñada para ayudarte a organizar tus entrenamientos de manera simple y eficaz.
           </h2>
           <Button
             className="w-32 tracking-wider"
@@ -42,13 +42,10 @@ export default function Home() {
       <div className="flex items-center justify-end m-5">
         <div className="flex flex-col gap-4 max-w-lg">
           <h1 className="text-4xl tracking-wider">
-            Trabajamos de manera personalizada en base a tus objetivos
+            Organización personalizada y en base a tus objetivos
           </h1>
           <h2 className="tracking-wider text-2xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, vel
-            omnis vero maiores reprehenderit libero harum accusamus doloremque
-            dolorem, tenetur, officiis deleniti porro veniam ex? Dolor repellat
-            corrupti quo aspernatur.
+            180 Funcional te brinda la posibilidad de administrar tus entrenamientos o el de tus alumnos.
           </h2>
         </div>
       </div>

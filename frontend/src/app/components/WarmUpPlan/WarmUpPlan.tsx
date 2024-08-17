@@ -7,9 +7,11 @@ import {
   CardBody,
   CardFooter,
   Divider,
+  Button,
 } from "@nextui-org/react";
+import DeleteIcon from "../../icons/DeleteIcon";
 const WarmUpPlan = () => {
-  const { warmup } = Fetching();
+  const { warmup, deleteWarmup } = Fetching();
 
   return (
     <div className="flex h-full max-h-screen m-4 p-4">
@@ -17,9 +19,15 @@ const WarmUpPlan = () => {
         <Card key={ejercicio._id} className="max-w-[600px] min-w-[300px] m-3">
           <CardHeader className="flex">
             <div className="flex flex-col gap-4 m-3">
-              <p className="text-3xl text-green-500 font-semibold tracking-wider">1: {ejercicio.ejercicioUno}</p>
-              <p className="text-3xl font-semibold tracking-wider">2: {ejercicio.ejercicioDos}</p>
-              <p className="text-3xl text-red-500 font-semibold tracking-wider">3: {ejercicio.ejercicioTres}</p>
+              <p className="text-3xl text-green-500 font-semibold tracking-wider">
+                1: {ejercicio.ejercicioUno}
+              </p>
+              <p className="text-3xl font-semibold tracking-wider">
+                2: {ejercicio.ejercicioDos}
+              </p>
+              <p className="text-3xl text-red-500 font-semibold tracking-wider">
+                3: {ejercicio.ejercicioTres}
+              </p>
             </div>
           </CardHeader>
           <Divider />
@@ -44,6 +52,15 @@ const WarmUpPlan = () => {
               </p>
             </div>
           </CardFooter>
+          <div className="flex justify-end">
+            <Button
+              onClick={() => deleteWarmup(ejercicio._id)}
+              color="danger"
+              className="w-16 m-2"
+            >
+              <DeleteIcon />
+            </Button>
+          </div>
         </Card>
       ))}
     </div>

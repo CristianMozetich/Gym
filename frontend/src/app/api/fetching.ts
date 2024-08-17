@@ -73,13 +73,16 @@ export const Fetching = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch(`http://localhost:1000/${userId}/createWarmup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      `http://localhost:1000/${userId}/createWarmup`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
     try {
       if (response.status === 200) {
         const datos = await response.json();
@@ -88,6 +91,27 @@ export const Fetching = () => {
       }
     } catch {
       console.log("no se pudo crear el ejercicio");
+    }
+  };
+
+  const deleteWarmup = async (warmupId: string) => {
+    try {
+      const response = await fetch(
+        `http://localhost:1000/deleteWarmup/${userId}/${warmupId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status === 200) {
+        const datos = await response.json();
+        setWarmup(warmup.filter((w) => w._id !== warmupId));
+        return datos;
+      }
+    } catch {
+      console.log("no se pudo borrar el ejercicio");
     }
   };
 
@@ -114,21 +138,45 @@ export const Fetching = () => {
     }
   };
 
+  const deleteMain = async (mainId: string) => {
+    try {
+      const response = await fetch(
+        `http://localhost:1000/deleteMain/${userId}/${mainId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status === 200) {
+        const datos = await response.json();
+        setMain(main.filter((m) => m._id !== mainId));
+        return datos;
+      }
+    } catch {
+      console.log("no se pudo borrar el ejercicio");
+    }
+  };
+
   const postCooldown = async (e: any) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch(`http://localhost:1000/${userId}/createCooldown`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-    try{
-      if(response.status === 200){
+    const response = await fetch(
+      `http://localhost:1000/${userId}/createCooldown`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    try {
+      if (response.status === 200) {
         const datos = await response.json();
         console.log(datos);
         return datos;
@@ -136,19 +184,37 @@ export const Fetching = () => {
     } catch {
       console.log("no se pudo crear el ejercicio");
     }
-  }
+  };
+
+  const deleteCooldown = async (cooldownId: string) => {
+    try {
+      const response = await fetch(
+        `http://localhost:1000/deleteCooldown/${userId}/${cooldownId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status === 200) {
+        const datos = await response.json();
+        setCoolDown(cooldown.filter((c) => c._id !== cooldownId));
+        return datos;
+      }
+    } catch {
+      console.log("no se pudo borrar el ejercicio");
+    }
+  };
 
   //Get Ejercicios
   const getWarmup = async () => {
-    const response = await fetch(
-      `http://localhost:1000/${userId}/getWarmup`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`http://localhost:1000/${userId}/getWarmup`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     try {
       if (response.status === 200) {
         const datos = await response.json();
@@ -176,7 +242,7 @@ export const Fetching = () => {
     } catch {
       console.log("no se pudieron obtener los ejercicios");
     }
-  }
+  };
 
   const getCooldown = async () => {
     const response = await fetch(
@@ -202,38 +268,40 @@ export const Fetching = () => {
   // POST OBJETIVOS
   const postObjetivos = async (e: any) => {
     e.preventDefault();
-  
+
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-  
+
     const payload = {
       ...data,
       userId: userId,
     };
-  
+
     try {
-      const response = await fetch(`http://localhost:1000/${userId}/createObjetive`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-  
+      const response = await fetch(
+        `http://localhost:1000/${userId}/createObjetive`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
       if (!response.ok) {
         throw new Error(`Error en la solicitud: ${response.statusText}`);
       }
-  
+
       const datos = await response.json();
-  
+
       setObjetivos((prevObjetivos) => [...prevObjetivos, datos]);
-  
+
       return datos;
     } catch (error) {
       console.error("No se pudo crear el objetivo:", error);
     }
   };
-  
 
   //GET OBJETIVOS
   const getObjetivos = async () => {
@@ -303,5 +371,8 @@ export const Fetching = () => {
     deleteObjetive,
     getObjetivos,
     users,
+    deleteWarmup,
+    deleteMain,
+    deleteCooldown,
   };
 };

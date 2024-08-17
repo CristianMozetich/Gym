@@ -1,16 +1,11 @@
 "use client";
 import React from "react";
 import { Fetching } from "../../api/fetching";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Divider,
-} from "@nextui-org/react";
+import { Card, CardHeader, CardBody, Divider, Button } from "@nextui-org/react";
+import DeleteIcon from "../../icons/DeleteIcon";
 
 const CoolDownPlan = () => {
-  const { cooldown } = Fetching();
+  const { cooldown, deleteCooldown } = Fetching();
   return (
     <div className="flex h-full max-h-screen m-4 p-4">
       {cooldown.map((ejercicio) => (
@@ -41,6 +36,15 @@ const CoolDownPlan = () => {
               </p>
             </div>
           </CardBody>
+          <div className="flex justify-end">
+            <Button
+              onClick={() => deleteCooldown(ejercicio._id)}
+              color="danger"
+              className="w-16 m-2"
+            >
+              <DeleteIcon />
+            </Button>
+          </div>
         </Card>
       ))}
     </div>

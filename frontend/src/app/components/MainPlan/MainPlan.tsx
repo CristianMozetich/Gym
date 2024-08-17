@@ -7,19 +7,27 @@ import {
   CardBody,
   CardFooter,
   Divider,
+  Button,
 } from "@nextui-org/react";
+import DeleteIcon from "../../icons/DeleteIcon";
 
 const MainPlan = () => {
-  const { main } = Fetching();
+  const { main, deleteMain } = Fetching();
   return (
     <div className="flex h-full max-h-screen m-4 p-4">
       {main.map((ejercicio) => (
         <Card key={ejercicio._id} className="max-w-[600px] min-w-[300px] m-3">
           <CardHeader className="flex">
             <div className="flex flex-col gap-4 m-3">
-            <p className="text-3xl text-green-500 font-semibold tracking-wider">1: {ejercicio.ejercicioUno}</p>
-              <p className="text-3xl font-semibold tracking-wider">2: {ejercicio.ejercicioDos}</p>
-              <p className="text-3xl text-red-500 font-semibold tracking-wider">3: {ejercicio.ejercicioTres}</p>
+              <p className="text-3xl text-green-500 font-semibold tracking-wider">
+                1: {ejercicio.ejercicioUno}
+              </p>
+              <p className="text-3xl font-semibold tracking-wider">
+                2: {ejercicio.ejercicioDos}
+              </p>
+              <p className="text-3xl text-red-500 font-semibold tracking-wider">
+                3: {ejercicio.ejercicioTres}
+              </p>
             </div>
           </CardHeader>
           <Divider />
@@ -44,6 +52,16 @@ const MainPlan = () => {
               </p>
             </div>
           </CardFooter>
+          <div className="flex justify-end">
+            {" "}
+            <Button
+              onClick={() => deleteMain(ejercicio._id)}
+              color="danger"
+              className="w-16 m-2"
+            >
+              <DeleteIcon />
+            </Button>
+          </div>
         </Card>
       ))}
     </div>
