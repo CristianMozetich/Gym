@@ -12,6 +12,9 @@ import {
   deleteObjetive,
   getUsers,
   newUser,
+  deleteWarmup,
+  deleteMain,
+  deleteCooldown,
 } from "../controllers/user.controllers.js";
 import passport from "passport";
 const userRouter = express.Router();
@@ -28,5 +31,8 @@ userRouter.get("/:userId/getCooldown", getCooldown);
 userRouter.get("/:userId/getObjetive", getObjetive);
 userRouter.get("/users", getUsers);
 userRouter.delete("/deleteObjetive/:userId/:objectiveId", deleteObjetive);
+userRouter.delete("/deleteWarmup/:userId/:warmupId", deleteWarmup);
+userRouter.delete("/deleteMain/:userId/:mainId", deleteMain);
+userRouter.delete("/deleteCooldown/:userId/:cooldownId", deleteCooldown);
 
 export default userRouter;

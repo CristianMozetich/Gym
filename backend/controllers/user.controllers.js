@@ -1,4 +1,4 @@
-import {  userModel } from "../model/user.model.js";
+import { userModel } from "../model/user.model.js";
 import { warmupModel } from "../model/user.model.js";
 import { objetiveModel } from "../model/user.model.js";
 import { createToken } from "../utils/jwt.js";
@@ -27,7 +27,8 @@ export const login = async (req, res) => {
 };
 
 export const createWarmup = async (req, res) => {
-  const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets, rest } = req.body;
+  const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets, rest } =
+    req.body;
   const { userId } = req.params;
   try {
     const user = await userModel.findById(userId);
@@ -53,8 +54,31 @@ export const createWarmup = async (req, res) => {
   }
 };
 
+export const deleteWarmup = async (req, res) => {
+  const { userId, warmupId } = req.params;
+
+  try {
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).send({ message: "No se encuentra el usuario" });
+    }
+    const ejercicios = user.clase.warmup.id(warmupId);
+    if (!ejercicios) {
+      return res.status(404).send({ message: "No se encuentra el ejercicio" });
+    }
+
+    user.clase.warmup._id = warmupId;
+    user.clase.warmup.remove(warmupId);
+    await user.save();
+    res.status(200).send({ message: "Ejercicio eliminado" });
+  } catch {
+    res.status(500).send({ message: "Error al eliminar el ejercicio" });
+  }
+};
+
 export const createMain = async (req, res) => {
-  const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets, rest } = req.body;
+  const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets, rest } =
+    req.body;
   const { userId } = req.params;
   try {
     const user = await userModel.findById(userId);
@@ -77,10 +101,32 @@ export const createMain = async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-}
+};
+
+export const deleteMain = async (req, res) => {
+  const { userId, mainId } = req.params;
+
+  try {
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).send({ message: "No se encuentra el usuario" });
+    }
+    const ejercicio = user.clase.main.id(mainId);
+    if (!ejercicio) {
+      return res.status(404).send({ message: "No se encuentra el ejercicio" });
+    }
+    user.clase.main._id = mainId;
+    user.clase.main.remove(mainId);
+    await user.save();
+    res.status(200).send({ message: "Ejercicio eliminado" });
+  } catch {
+    res.status(500).send({ message: "Error al eliminar el ejercicio" });
+  }
+};
 
 export const createCooldown = async (req, res) => {
-  const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets } = req.body;
+  const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets } =
+    req.body;
   const { userId } = req.params;
   try {
     const user = await userModel.findById(userId);
@@ -101,7 +147,28 @@ export const createCooldown = async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-}
+};
+
+export const deleteCooldown = async (req, res) => {
+  const { userId, cooldownId } = req.params;
+
+  try {
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).send({ message: "No se encuentra el usuario" });
+    }
+    const ejercicio = user.clase.cooldown.id(cooldownId);
+    if (!ejercicio) {
+      return res.status(404).send({ message: "No se encuentra el ejercicio" });
+    }
+    user.clase.cooldown._id = cooldownId;
+    user.clase.cooldown.remove(cooldownId);
+    await user.save();
+    res.status(200).send({ message: "Ejercicio eliminado" });
+  } catch {
+    res.status(500).send({ message: "Error al eliminar el ejercicio" });
+  }
+};
 
 export const getWarmup = async (req, res) => {
   const { userId } = req.params; // El ID del usuario logueado se pasa como un parámetro de la URL
