@@ -20,7 +20,7 @@ export default function Home() {
           </h1>
           <h2 className="tracking-wider text-3xl">
             Te ofrecemos una plataforma diseñada para ayudarte a organizar tus
-            entrenamientos de manera simple y eficaz.
+            entrenamientos de manera simple.
           </h2>
           <Button
             className="w-32 tracking-wider"
@@ -48,7 +48,7 @@ export default function Home() {
             Organización personalizada y en base a tus objetivos
           </h1>
           <h2 className="tracking-wider text-2xl">
-            180 Funcional te brinda la posibilidad de administrar tus
+            Nuestra plataforma te brinda la posibilidad de administrar tus planes de
             entrenamientos diferenciando la entrada en calor, el desarollo y la vuelta a la calma.
           </h2>
         </div>
