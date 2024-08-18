@@ -15,7 +15,7 @@ const page = () => {
         </div>
         <div className="w-1/2">
           <h1 className="text-3xl m-2 p-2">Objetivos</h1>
-          <div className="border rounded-xl flex flex-col items-center">
+          <div className="border rounded-xl flex flex-col items-start max-w-96">
             <Objetives />
           </div>
         </div>

@@ -21,7 +21,7 @@ const Page = () => {
   return (
     <div className="flex justify-center items-center flex-col h-screen relative">
       <button
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-blue-200 hover:bg-blue-400 transition-all p-4 rounded-full z-10"
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-blue-200 hover:bg-blue-400 transition-all p-2 rounded-full z-10"
         onClick={() => scroll("left")}
       >
         <LeftIcon />
@@ -31,28 +31,28 @@ const Page = () => {
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentSection * 100}%)` }}
         >
-          <div className="flex-none min-w-full flex justify-center items-center m-4 p-4">
-            <div>
-              <h1 className="text-5xl font-bold text-blue-500 mb-4">WarmUp</h1>
+          <div className="flex-none min-w-full flex justify-center items-center">
+            <div className="max-w-[1500px]">
+              <h1 className="text-4xl font-bold text-blue-500">WarmUp</h1>
               {sections[0]}
             </div>
           </div>
-          <div className="flex-none min-w-full flex justify-center items-center m-4 p-4">
-            <div>
-              <h1 className="text-5xl font-bold text-blue-500 mb-4">Main</h1>
+          <div className="flex-none min-w-full flex justify-center items-center">
+            <div className="max-w-[1500px]">
+              <h1 className="text-4xl font-bold text-blue-500">Main</h1>
               {sections[1]}
             </div>
           </div>
-          <div className="flex-none min-w-full flex justify-center items-center m-4 p-4">
-            <div>
-              <h1 className="text-5xl font-bold text-blue-500 mb-4">CoolDown</h1>
+          <div className="flex-none min-w-full flex justify-center items-center">
+            <div className="max-w-[1500px]">
+              <h1 className="text-4xl font-bold text-blue-500">CoolDown</h1>
               {sections[2]}
             </div>
           </div>
         </div>
       </div>
       <button
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-blue-200 hover:bg-blue-400 transition-all p-4 rounded-full z-10"
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-blue-200 hover:bg-blue-400 transition-all p-2 rounded-full z-10"
         onClick={() => scroll("right")}
       >
         <RightIcon />

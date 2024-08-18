@@ -22,10 +22,10 @@ export const FetchLogin = () => {
 
       if (response.status === 200) {
         const datos = await response.json();
+        localStorage.setItem("token", datos.token);
         const decodeData = decodeToken(datos.token);
         setUserId(decodeData.user._id);
         setUserName(decodeData.user.name);
-        console.log(decodeData.user._id); // INFORMACIÓN DEL USUARIO DECODIFICADA
         router.push("/pages/paneladmin");
         return datos;
       }

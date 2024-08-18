@@ -19,14 +19,14 @@ const WarmUpPlan = () => {
         <Card key={ejercicio._id} className="max-w-[600px] min-w-[300px] m-3">
           <CardHeader className="flex">
             <div className="flex flex-col gap-4 m-3">
-              <p className="text-3xl text-green-500 font-semibold tracking-wider">
-                1: {ejercicio.ejercicioUno}
+              <p className="text-2xl text-blue-500 font-semibold tracking-wider">
+                1- {ejercicio.ejercicioUno}
               </p>
-              <p className="text-3xl font-semibold tracking-wider">
-                2: {ejercicio.ejercicioDos}
+              <p className="text-2xl text-blue-500 font-semibold tracking-wider">
+                2- {ejercicio.ejercicioDos}
               </p>
-              <p className="text-3xl text-red-500 font-semibold tracking-wider">
-                3: {ejercicio.ejercicioTres}
+              <p className="text-2xl text-blue-500 font-semibold tracking-wider">
+                3- {ejercicio.ejercicioTres}
               </p>
             </div>
           </CardHeader>
@@ -34,11 +34,11 @@ const WarmUpPlan = () => {
           <CardBody>
             <div className="flex gap-4 m-4 flex-col items-start">
               <p className="text-2xl">
-                <span className="text-blue-400 tracking-wider">Duración: </span>
+                <span className="text-green-400 tracking-wider">Duración: </span>
                 {ejercicio.duration}
               </p>
               <p className="text-2xl">
-                <span className="text-blue-400 tracking-wider">Sets: </span>
+                <span className="text-green-400 tracking-wider">Sets: </span>
                 {ejercicio.sets}
               </p>
             </div>
@@ -47,7 +47,7 @@ const WarmUpPlan = () => {
           <CardFooter>
             <div className="m-3 flex flex-col">
               <p className="text-2xl">
-                <span className="text-blue-400 tracking-wider">Descanso: </span>
+                <span className="text-green-400 tracking-wider">Descanso: </span>
                 {ejercicio.rest}
               </p>
             </div>
@@ -56,7 +56,7 @@ const WarmUpPlan = () => {
             <Button
               onClick={() => deleteWarmup(ejercicio._id)}
               color="danger"
-              className="w-16 m-2"
+              className="m-2"
             >
               <DeleteIcon />
             </Button>
