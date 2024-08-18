@@ -14,10 +14,13 @@ export default function Home() {
       </div>
       <div className="flex items-center justify-start m-3">
         <div className="flex gap-4 flex-col justify-center max-w-lg">
-          <h1 className="text-8xl tracking-wider"><span className="text-button">18</span>0 Fun<span className="text-blue-500">cional</span></h1>
+          <h1 className="text-8xl tracking-wider">
+            <span className="text-button dark:text-slate-100">180 </span>
+            <span className="text-blue-500 dark:text-green-500">Funcional</span>
+          </h1>
           <h2 className="tracking-wider text-3xl">
-            Te ofrecemos una
-            plataforma diseñada para ayudarte a organizar tus entrenamientos de manera simple y eficaz.
+            Te ofrecemos una plataforma diseñada para ayudarte a organizar tus
+            entrenamientos de manera simple y eficaz.
           </h2>
           <Button
             className="w-32 tracking-wider"
@@ -45,7 +48,8 @@ export default function Home() {
             Organización personalizada y en base a tus objetivos
           </h1>
           <h2 className="tracking-wider text-2xl">
-            180 Funcional te brinda la posibilidad de administrar tus entrenamientos.
+            180 Funcional te brinda la posibilidad de administrar tus
+            entrenamientos diferenciando la entrada en calor, el desarollo y la vuelta a la calma.
           </h2>
         </div>
       </div>

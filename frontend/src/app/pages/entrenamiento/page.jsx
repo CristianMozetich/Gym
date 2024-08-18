@@ -32,19 +32,19 @@ const Page = () => {
           style={{ transform: `translateX(-${currentSection * 100}%)` }}
         >
           <div className="flex-none min-w-full flex justify-center items-center">
-            <div className="max-w-[1500px]">
+            <div className="max-w-[1400px]">
               <h1 className="text-4xl font-bold text-blue-500">WarmUp</h1>
               {sections[0]}
             </div>
           </div>
           <div className="flex-none min-w-full flex justify-center items-center">
-            <div className="max-w-[1500px]">
+            <div className="max-w-[1400px]">
               <h1 className="text-4xl font-bold text-blue-500">Main</h1>
               {sections[1]}
             </div>
           </div>
           <div className="flex-none min-w-full flex justify-center items-center">
-            <div className="max-w-[1500px]">
+            <div className="max-w-[1400px]">
               <h1 className="text-4xl font-bold text-blue-500">CoolDown</h1>
               {sections[2]}
             </div>

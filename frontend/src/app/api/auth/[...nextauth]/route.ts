@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import facebookProvider from "next-auth/providers/facebook";
 import "dotenv/config";
 
+
 const handler = NextAuth({
   providers: [
     GoogleProvider({

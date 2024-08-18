@@ -7,11 +7,9 @@ import { Button } from "@nextui-org/react";
 import GoogleIcon from "../../icons/GoogleIcon";
 import FaceIcon from "../../icons/FaceIcon";
 import Link from "next/link";
-import { signIn, useSession, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 const Page = () => {
-  const { data: session } = useSession();
-  console.log(session);
   return (
     <div className="h-screen w-full relative">
       <Image src="/img/gym.jpg" alt="logo" layout="fill" objectFit="cover" />

@@ -13,11 +13,16 @@ import { ThemeSwitcher } from "../themeSwitcher";
 import { signOut } from "next-auth/react";
 
 const Nav = () => {
+  const logout = () => {
+    localStorage.removeItem("token");
+    signOut({ callbackUrl: "/" });
+  };
   return (
     <Navbar shouldHideOnScroll>
       <NavbarBrand>
         <Link className="font-bold text-inherit" href="/">
-          180 FUNCIONAL
+          <span className="text-button dark:text-slate-100">180</span>{" "}
+          <span className="text-blue-500 dark:text-green-500">FUNCIONAL</span>
         </Link>
       </NavbarBrand>
       <NavbarContent className="sm:flex hidden gap-4 justify-center">
@@ -45,7 +50,7 @@ const Nav = () => {
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button onClick={() => signOut()}>Sing Out</Button>
+          <Button onClick={() => logout()}>Sing Out</Button>
         </NavbarItem>
         <NavbarItem>
           <ThemeSwitcher />
