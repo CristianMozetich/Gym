@@ -11,7 +11,6 @@ const objetiveSchema = new Schema({
   },
 });
 
-
 const warmupSchema = new Schema({
   ejercicioUno: {
     type: String,
@@ -96,18 +95,24 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: false,
   },
   email: {
     type: String,
     required: true,
+    unique: true,
+  },
+  provider: {
+    type: String,
+    enum: ["local", "google", "facebook"],
+    default: "local",
   },
   clase: {
     objetive: [objetiveSchema],
     warmup: [warmupSchema],
     main: [mainSchema],
     cooldown: [cooldownSchema],
-  }, 
+  },
 });
 
 export const userModel = model("User", userSchema);

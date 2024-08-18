@@ -6,6 +6,7 @@ import local from "passport-local";
 const LocalStrategy = local.Strategy;
 
 const initializePassport = () => {
+  // Estrategia Local para registro
   passport.use(
     "register",
     new LocalStrategy(
@@ -19,24 +20,26 @@ const initializePassport = () => {
         try {
           const user = await userModel.findOne({ email });
           if (user) {
-            return done(null, false);
-          } else {
-            const passwordHash = createHash(password);
-            const newUser = await userModel.create({
-              name,
-              password: passwordHash,
-              email,
-            });
-            const result = newUser;
-            done(null, result);
+            return done(null, false, { message: "Email already registered" });
           }
+
+          const passwordHash = await createHash(password);
+          const newUser = await userModel.create({
+            name,
+            password: passwordHash,
+            email,
+          });
+
+          done(null, newUser);
         } catch (error) {
-          console.log('error al crear el usuario', error);
+          console.log('Error al crear el usuario:', error);
+          done(error);
         }
       }
     )
   );
 
+  // Estrategia Local para inicio de sesión
   passport.use(
     "login",
     new LocalStrategy(
@@ -49,11 +52,14 @@ const initializePassport = () => {
         try {
           const user = await userModel.findOne({ email });
           if (!user) {
-            return done(null, false);
+            return done(null, false, { message: "User not found" });
           }
-          if (!validatePassword(password, user.password)) {
-            return done(null, false);
+
+          const isPasswordValid = await validatePassword(password, user.password);
+          if (!isPasswordValid) {
+            return done(null, false, { message: "Incorrect password" });
           }
+
           done(null, user);
         } catch (error) {
           done(error);
@@ -62,15 +68,20 @@ const initializePassport = () => {
     )
   );
 
-  //INICIALIZAR LA SESION DEL USUARIO
-  passport.serializeUser((email, done) => {
-    done(null, email);
+
+  // Inicializar la sesión del usuario
+  passport.serializeUser((user, done) => {
+    done(null, user._id);
   });
 
-  //ELIMINAR LA SESION DEL USUARIO
-  passport.deserializeUser(async (email, done) => {
-    const user = await userModel.findById(email);
-    done(null, user);
+  // Deserializar la sesión del usuario
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await userModel.findById(id);
+      done(null, user);
+    } catch (error) {
+      done(error);
+    }
   });
 };
 

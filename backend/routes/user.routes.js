@@ -1,4 +1,5 @@
 import express from "express";
+import passport from "passport";
 import {
   login,
   createWarmup,
@@ -16,11 +17,14 @@ import {
   deleteMain,
   deleteCooldown,
 } from "../controllers/user.controllers.js";
-import passport from "passport";
+
 const userRouter = express.Router();
 
+// Rutas de registro e inicio de sesión local
 userRouter.post("/register", passport.authenticate("register"), newUser);
 userRouter.post("/login", passport.authenticate("login"), login);
+
+// Rutas de CRUD
 userRouter.post("/:userId/createWarmup", createWarmup);
 userRouter.post("/:userId/createMain", createMain);
 userRouter.post("/:userId/createCooldown", createCooldown);
