@@ -278,3 +278,35 @@ export const getUsers = async (req, res) => {
   }
 };
 
+export const socialLogin = async (req, res) => {
+  const { email, name, provider } = req.body;
+
+  try {
+    // Verifica si el usuario ya existe
+    let user = await userModel.findOne({ email });
+
+    if (!user) {
+      // Crea un nuevo usuario si no existe
+      user = await userModel.create({
+        name,
+        email,
+        provider,
+        password: null, 
+      });
+    }
+
+    // Crea un token para el usuario
+    const token = createToken(user);
+
+    // Guarda el usuario en la base de datos si es nuevo
+    await user.save();
+
+    // Envía la respuesta exitosa
+    res.status(200).json({ success: true, token, user });
+  } catch (error) {
+    // Captura el error y envía una respuesta de error
+    res.status(400).json({ message: error.message });
+  }
+};
+
+

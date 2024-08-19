@@ -16,6 +16,7 @@ import {
   deleteWarmup,
   deleteMain,
   deleteCooldown,
+  socialLogin,
 } from "../controllers/user.controllers.js";
 
 const userRouter = express.Router();
@@ -38,5 +39,6 @@ userRouter.delete("/deleteObjetive/:userId/:objectiveId", deleteObjetive);
 userRouter.delete("/deleteWarmup/:userId/:warmupId", deleteWarmup);
 userRouter.delete("/deleteMain/:userId/:mainId", deleteMain);
 userRouter.delete("/deleteCooldown/:userId/:cooldownId", deleteCooldown);
+userRouter.post("/auth/socialLogin", socialLogin);
 
 export default userRouter;
