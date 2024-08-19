@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/context/Contexto.tsx", "src/app/lib/mongodb.js", "src/app/icons/InstaIcon.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/context/Contexto.tsx", "src/app/lib/mongodb.js", "src/app/icons/InstaIcon.jsx", "src/app/hooks/sessionNextAuth.js"],
   "exclude": ["node_modules"]
 }
