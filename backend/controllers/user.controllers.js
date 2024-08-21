@@ -291,18 +291,15 @@ export const socialLogin = async (req, res) => {
         name,
         email,
         provider,
-        password: null, 
+        password: null, // Para usuarios de autenticación social no necesitas almacenar contraseña
       });
     }
 
     // Crea un token para el usuario
-    const token = createToken(user);
-
-    // Guarda el usuario en la base de datos si es nuevo
-    await user.save();
+    const token = createToken({ _id: user._id, email: user.email, name: user.name });
 
     // Envía la respuesta exitosa
-    res.status(200).json({ success: true, token, user });
+    res.status(200).json({ success: true, token, userId: user._id, user });
   } catch (error) {
     // Captura el error y envía una respuesta de error
     res.status(400).json({ message: error.message });

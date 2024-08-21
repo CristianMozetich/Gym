@@ -24,6 +24,8 @@ const userRouter = express.Router();
 // Rutas de registro e inicio de sesión local
 userRouter.post("/register", passport.authenticate("register", { session: false }), newUser);
 userRouter.post("/login", passport.authenticate("login", { session: false }), login);
+// Rutas de inicio de sesión con redes
+userRouter.post("/auth/socialLogin", socialLogin);
 
 // Rutas de CRUD
 userRouter.post("/:userId/createWarmup", createWarmup);
@@ -39,6 +41,5 @@ userRouter.delete("/deleteObjetive/:userId/:objectiveId", deleteObjetive);
 userRouter.delete("/deleteWarmup/:userId/:warmupId", deleteWarmup);
 userRouter.delete("/deleteMain/:userId/:mainId", deleteMain);
 userRouter.delete("/deleteCooldown/:userId/:cooldownId", deleteCooldown);
-userRouter.post("/auth/socialLogin", socialLogin);
 
 export default userRouter;
