@@ -31,20 +31,27 @@ const handler = NextAuth({
         });
 
         const data = await response.json();
-        return data.success;
+        if (data.success) {
+          user.id = data.userId; // Usamos el _id de MongoDB
+          return true;
+        } else {
+          return false;
+        }
       } catch (error) {
         console.error("Error al registrar el usuario en el backend:", error);
         return false;
       }
     },
-    async jwt({ token, user }): Promise<any> {
+    async jwt({ token, user }) {
+
       if (user) {
         token.id = user.id;
       }
       return token;
     },
-    async session({ session }): Promise<any> {
+    async session({ session, token }) {
 
+      session.user.id = token.id;
       return session;
     },
   },

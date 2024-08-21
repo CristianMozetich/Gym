@@ -4,7 +4,7 @@ import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-import ContextProvider from "./context/Contexto";
+import ClientWrapper from "./context/ClientWrapper";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,11 +24,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <NextUIProvider>
           <NextThemesProvider attribute="class" defaultTheme="dark">
-            <ContextProvider>
-              <Nav />
-              {children}
-              <Footer />
-            </ContextProvider>
+            <ClientWrapper>
+
+                <Nav />
+                {children}
+                <Footer />
+
+            </ClientWrapper>
           </NextThemesProvider>
         </NextUIProvider>
       </body>

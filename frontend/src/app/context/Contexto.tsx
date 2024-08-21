@@ -8,7 +8,7 @@ import {
   useEffect,
 } from "react";
 import { jwtDecode } from "jwt-decode";
-import { SessionProvider } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 interface ContextoType {
   userId: string;
@@ -34,6 +34,7 @@ export default function ContextProvider({ children }: ContextProviderProps) {
   const [userId, setUserId] = useState("");
   const [userName, setUserName] = useState("");
 
+  const { data: session } = useSession();
 
   const decodeToken = (token: string): JwtPayload | undefined => {
     try {
@@ -43,6 +44,14 @@ export default function ContextProvider({ children }: ContextProviderProps) {
       console.error("Error al decodificar el token");
     }
   };
+  
+  useEffect(() => {
+    if (session) {
+      console.log(session);
+      setUserId(session.user.id);
+      setUserName(session.user.name);
+    }
+  }, [session]);
 
   useEffect(() => {
     // Leer el token del localStorage al montar el componente para que permanezca la sesión activa
@@ -56,7 +65,7 @@ export default function ContextProvider({ children }: ContextProviderProps) {
     }
   }, []);
   return (
-    <SessionProvider>
+
       <Contexto.Provider
         value={{
           userId,
@@ -68,6 +77,6 @@ export default function ContextProvider({ children }: ContextProviderProps) {
       >
         {children}
       </Contexto.Provider>
-    </SessionProvider>
+
   );
 }
