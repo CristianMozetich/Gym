@@ -1,6 +1,6 @@
 import React from "react";
 import { Avatar } from "@nextui-org/react";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Contexto } from "../../context/Contexto";
 
 const AvatarModel = () => {

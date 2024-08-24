@@ -4,8 +4,8 @@ import { useRef } from "react";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { FetchLogin } from "./fetchLogin";
-const Login = () => {
-  const formRef = useRef();
+const Login: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const { handleSubmit } = FetchLogin();
 
   return (

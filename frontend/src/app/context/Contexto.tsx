@@ -34,7 +34,7 @@ export default function ContextProvider({ children }: ContextProviderProps) {
   const [userId, setUserId] = useState("");
   const [userName, setUserName] = useState("");
 
-  const { data: session }: any = useSession();
+  const { data: session } = useSession();
 
   const decodeToken = (token: string): JwtPayload | undefined => {
     try {

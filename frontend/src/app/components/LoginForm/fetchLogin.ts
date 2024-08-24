@@ -1,14 +1,14 @@
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { Contexto } from "../../context/Contexto";
 
 export const FetchLogin = () => {
   const router = useRouter();
   const { decodeToken, setUserId, setUserName } = useContext(Contexto);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
 
     try {

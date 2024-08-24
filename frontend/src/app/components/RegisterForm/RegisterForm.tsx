@@ -2,12 +2,12 @@
 import React from "react";
 import { Fetching } from "../../api/fetching";
 import { useRef } from "react";
-import { Validation } from "../../components/RegisterForm/validation";
+import { Validation } from "./validation";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 
-const Register = () => {
-  const formRef = useRef();
+const Register: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const { errorBlurName, onBlurName, errorBlurEmail, onBlurEmail } =
     Validation();
 
@@ -31,7 +31,7 @@ const Register = () => {
           type="text"
           name="name"
           placeholder="name"
-          onBlur={onBlurName}
+          onChange={onBlurName}
         />
         <p className="text-red-500">{errorBlurName}</p>
         <Input
@@ -45,7 +45,7 @@ const Register = () => {
           type="email"
           name="email"
           placeholder="email"
-          onBlur={onBlurEmail}
+          onChange={onBlurEmail}
         />
         <p className="text-red-500">{errorBlurEmail}</p>
         <Button className="w-80 bg-button text-slate-50" color="primary" type="submit">

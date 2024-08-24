@@ -10,7 +10,7 @@ const Page = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const sections = [<WarmUpPlan key={0} />, <MainPlan key={1} />, <CoolDownPlan key={2} />];
 
-  const scroll = (direction) => {
+  const scroll = (direction: "left" | "right") => {
     if (direction === "left" && currentSection > 0) {
       setCurrentSection(currentSection - 1);
     } else if (direction === "right" && currentSection < sections.length - 1) {

@@ -5,8 +5,8 @@ import { useRef } from "react";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 
-const WarmUpForm = () => {
-  const formRef = useRef();
+const WarmUpForm: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const { postWarmup } = Fetching();
 
   return (
