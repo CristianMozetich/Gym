@@ -4,7 +4,10 @@ import { objetiveModel } from "../model/user.model.js";
 import { createToken } from "../utils/jwt.js";
 import { mainModel } from "../model/user.model.js";
 import { cooldownModel } from "../model/user.model.js";
-export const newUser = async (req, res) => {
+import { Request, Response } from "express";
+
+
+export const newUser = async (req: Request, res: Response) => {
   try {
     console.log("Usuario creado");
     res.status(200).json({ mensaje: "Usuario creado" });
@@ -14,7 +17,7 @@ export const newUser = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {
+export const login = async (req: Request, res: Response) => {
   try {
     const token = createToken(req.user);
 
@@ -26,7 +29,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const createWarmup = async (req, res) => {
+export const createWarmup = async (req: Request, res: Response) => {
   const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets, rest } =
     req.body;
   const { userId } = req.params;
@@ -44,7 +47,7 @@ export const createWarmup = async (req, res) => {
       rest,
     });
 
-    user.clase.warmup.push(warmup);
+    user.clase?.warmup.push(warmup);
 
     await user.save();
 
@@ -54,7 +57,7 @@ export const createWarmup = async (req, res) => {
   }
 };
 
-export const deleteWarmup = async (req, res) => {
+export const deleteWarmup = async (req: Request, res: Response) => {
   const { userId, warmupId } = req.params;
 
   try {
@@ -62,13 +65,12 @@ export const deleteWarmup = async (req, res) => {
     if (!user) {
       return res.status(404).send({ message: "No se encuentra el usuario" });
     }
-    const ejercicios = user.clase.warmup.id(warmupId);
+    const ejercicios = user.clase?.warmup.id(warmupId);
     if (!ejercicios) {
       return res.status(404).send({ message: "No se encuentra el ejercicio" });
     }
 
-    user.clase.warmup._id = warmupId;
-    user.clase.warmup.remove(warmupId);
+    user.clase?.warmup.remove(warmupId);
     await user.save();
     res.status(200).send({ message: "Ejercicio eliminado" });
   } catch {
@@ -76,7 +78,7 @@ export const deleteWarmup = async (req, res) => {
   }
 };
 
-export const createMain = async (req, res) => {
+export const createMain = async (req: Request, res: Response) => {
   const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets, rest } =
     req.body;
   const { userId } = req.params;
@@ -94,7 +96,7 @@ export const createMain = async (req, res) => {
       rest,
     });
 
-    user.clase.main.push(main);
+    user.clase?.main.push(main);
 
     await user.save();
     res.status(200).json({ message: "ejercicio creado", main });
@@ -103,7 +105,7 @@ export const createMain = async (req, res) => {
   }
 };
 
-export const deleteMain = async (req, res) => {
+export const deleteMain = async (req: Request, res: Response) => {
   const { userId, mainId } = req.params;
 
   try {
@@ -111,12 +113,12 @@ export const deleteMain = async (req, res) => {
     if (!user) {
       return res.status(404).send({ message: "No se encuentra el usuario" });
     }
-    const ejercicio = user.clase.main.id(mainId);
+    const ejercicio = user.clase?.main.id(mainId);
     if (!ejercicio) {
       return res.status(404).send({ message: "No se encuentra el ejercicio" });
     }
-    user.clase.main._id = mainId;
-    user.clase.main.remove(mainId);
+
+    user.clase?.main.remove(mainId);
     await user.save();
     res.status(200).send({ message: "Ejercicio eliminado" });
   } catch {
@@ -124,7 +126,7 @@ export const deleteMain = async (req, res) => {
   }
 };
 
-export const createCooldown = async (req, res) => {
+export const createCooldown = async (req: Request, res: Response) => {
   const { ejercicioUno, ejercicioDos, ejercicioTres, duration, sets } =
     req.body;
   const { userId } = req.params;
@@ -140,7 +142,7 @@ export const createCooldown = async (req, res) => {
       duration,
       sets,
     });
-    user.clase.cooldown.push(cooldown);
+    user.clase?.cooldown.push(cooldown);
 
     await user.save();
     res.status(200).json({ message: "ejercicio creado", cooldown });
@@ -149,7 +151,7 @@ export const createCooldown = async (req, res) => {
   }
 };
 
-export const deleteCooldown = async (req, res) => {
+export const deleteCooldown = async (req: Request, res: Response) => {
   const { userId, cooldownId } = req.params;
 
   try {
@@ -157,12 +159,12 @@ export const deleteCooldown = async (req, res) => {
     if (!user) {
       return res.status(404).send({ message: "No se encuentra el usuario" });
     }
-    const ejercicio = user.clase.cooldown.id(cooldownId);
+    const ejercicio = user.clase?.cooldown.id(cooldownId);
     if (!ejercicio) {
       return res.status(404).send({ message: "No se encuentra el ejercicio" });
     }
-    user.clase.cooldown._id = cooldownId;
-    user.clase.cooldown.remove(cooldownId);
+
+    user.clase?.cooldown.remove(cooldownId);
     await user.save();
     res.status(200).send({ message: "Ejercicio eliminado" });
   } catch {
@@ -170,49 +172,49 @@ export const deleteCooldown = async (req, res) => {
   }
 };
 
-export const getWarmup = async (req, res) => {
+export const getWarmup = async (req: Request, res: Response) => {
   const { userId } = req.params; // El ID del usuario logueado se pasa como un parámetro de la URL
   try {
     const user = await userModel.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const warmup = user.clase.warmup;
+    const warmup = user.clase?.warmup;
     res.status(200).json(warmup);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
-export const getMain = async (req, res) => {
+export const getMain = async (req: Request, res: Response) => {
   const { userId } = req.params; // El ID del usuario logueado se pasa como un parámetro de la URL
   try {
     const user = await userModel.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const main = user.clase.main;
+    const main = user.clase?.main;
     res.status(200).json(main);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
-export const getCooldown = async (req, res) => {
+export const getCooldown = async (req: Request, res: Response) => {
   const { userId } = req.params; // El ID del usuario logueado se pasa como un parámetro de la URL
   try {
     const user = await userModel.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const cooldown = user.clase.cooldown;
+    const cooldown = user.clase?.cooldown;
     res.status(200).json(cooldown);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
-export const createObjetive = async (req, res) => {
+export const createObjetive = async (req: Request, res: Response) => {
   const { name, description } = req.body;
   const { userId } = req.params;
 
@@ -224,7 +226,7 @@ export const createObjetive = async (req, res) => {
 
     const objective = new objetiveModel({ name, description });
 
-    user.clase.objetive.push(objective);
+    user.clase?.objetive.push(objective);
     await user.save();
     res.status(200).json({ message: "Objetivo creado", objective });
   } catch (error) {
@@ -232,21 +234,21 @@ export const createObjetive = async (req, res) => {
   }
 };
 
-export const getObjetive = async (req, res) => {
+export const getObjetive = async (req: Request, res: Response): Promise<void> => {
   const { userId } = req.params;
   try {
     const user = await userModel.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const objective = user.clase.objetive;
+    const objective = user.clase?.objetive;
     res.status(200).json(objective);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
-export const deleteObjetive = async (req, res) => {
+export const deleteObjetive = async (req: Request, res: Response) => {
   const { userId, objectiveId } = req.params;
 
   try {
@@ -255,13 +257,13 @@ export const deleteObjetive = async (req, res) => {
       return res.status(404).send({ message: "No se encuentra el usuario" });
     }
 
-    const objective = user.clase.objetive.id(objectiveId);
+    const objective = user.clase?.objetive.id(objectiveId);
     if (!objective) {
       return res.status(404).send({ message: "No se encuentra el objetivo" });
     }
 
-    user.clase.objetive._id = objectiveId;
-    user.clase.objetive.remove(objectiveId);
+    
+    user.clase?.objetive.remove(objectiveId);
     await user.save();
     res.status(200).send({ message: "Objetivo eliminado" });
   } catch (error) {
@@ -269,16 +271,16 @@ export const deleteObjetive = async (req, res) => {
   }
 };
 
-export const getUsers = async (req, res) => {
+export const getUsers = async (req: Request, res: Response) => {
   const users = await userModel.find();
   try {
     res.status(200).json(users);
-  } catch {
+  } catch (error){
     res.status(400).json({ message: error.message });
   }
 };
 
-export const socialLogin = async (req, res) => {
+export const socialLogin = async (req: Request, res: Response) => {
   const { email, name, provider } = req.body;
 
   try {

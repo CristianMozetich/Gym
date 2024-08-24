@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 
 app.use("/", userRouter);
 
-const mongoUrl = process.env.MONGO_URL;
+const mongoUrl = process.env.MONGO_URL || "";
 
 mongoose
   .connect(mongoUrl, {
