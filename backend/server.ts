@@ -1,8 +1,8 @@
 import express from "express";
 import "dotenv/config";
-import userRouter from "./routes/user.routes.js";
+import userRouter from "./routes/user.routes";
 import mongoose from "mongoose";
-import initializePassport from "./utils/passport.js";
+import initializePassport from "./utils/passport";
 import passport from "passport";
 import session from "express-session";
 import cors from "cors";
@@ -18,7 +18,7 @@ app.use(cors({
 }));
 app.use(
   session({
-    secret: process.env.SESSION,
+    secret: process.env.SESSION || "",
     resave: false,
     saveUninitialized: false,
   })

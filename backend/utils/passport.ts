@@ -1,5 +1,5 @@
-import { validatePassword, createHash } from "./bcrypt.js";
-import { userModel } from "../model/user.model.js";
+import { validatePassword, createHash } from "./bcrypt";
+import { userModel } from "../model/user.model";
 import passport from "passport";
 import local from "passport-local";
 
@@ -54,7 +54,9 @@ const initializePassport = () => {
           if (!user) {
             return done(null, false, { message: "User not found" });
           }
-
+          if (typeof user.password !== 'string') {
+            return done(null, false, { message: "User password is invalid" });
+          }
           const isPasswordValid = await validatePassword(password, user.password);
           if (!isPasswordValid) {
             return done(null, false, { message: "Incorrect password" });
@@ -70,7 +72,7 @@ const initializePassport = () => {
 
 
   // Inicializar la sesión del usuario
-  passport.serializeUser((user, done) => {
+  passport.serializeUser((user: any, done) => {
     done(null, user._id);
   });
 

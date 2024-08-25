@@ -1,9 +1,9 @@
-import { userModel } from "../model/user.model.js";
-import { warmupModel } from "../model/user.model.js";
-import { objetiveModel } from "../model/user.model.js";
-import { createToken } from "../utils/jwt.js";
-import { mainModel } from "../model/user.model.js";
-import { cooldownModel } from "../model/user.model.js";
+import { userModel } from "../model/user.model";
+import { warmupModel } from "../model/user.model";
+import { objetiveModel } from "../model/user.model";
+import { createToken } from "../utils/jwt";
+import { mainModel } from "../model/user.model";
+import { cooldownModel } from "../model/user.model";
 import { Request, Response } from "express";
 
 
@@ -53,7 +53,7 @@ export const createWarmup = async (req: Request, res: Response) => {
 
     res.status(200).json({ message: "ejercicio creado", warmup });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error al crear el ejercicio" });
   }
 };
 
@@ -101,7 +101,7 @@ export const createMain = async (req: Request, res: Response) => {
     await user.save();
     res.status(200).json({ message: "ejercicio creado", main });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error al crear el ejercicio" });
   }
 };
 
@@ -147,7 +147,7 @@ export const createCooldown = async (req: Request, res: Response) => {
     await user.save();
     res.status(200).json({ message: "ejercicio creado", cooldown });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error al crear el ejercicio" });
   }
 };
 
@@ -182,7 +182,7 @@ export const getWarmup = async (req: Request, res: Response) => {
     const warmup = user.clase?.warmup;
     res.status(200).json(warmup);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error al obtener el warmup" });
   }
 };
 
@@ -196,7 +196,7 @@ export const getMain = async (req: Request, res: Response) => {
     const main = user.clase?.main;
     res.status(200).json(main);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error al obtener el Main" });
   }
 };
 
@@ -210,7 +210,7 @@ export const getCooldown = async (req: Request, res: Response) => {
     const cooldown = user.clase?.cooldown;
     res.status(200).json(cooldown);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error al obtener el Cooldown" });
   }
 };
 
@@ -230,7 +230,7 @@ export const createObjetive = async (req: Request, res: Response) => {
     await user.save();
     res.status(200).json({ message: "Objetivo creado", objective });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error al crear el objetivo" });
   }
 };
 
@@ -239,12 +239,12 @@ export const getObjetive = async (req: Request, res: Response): Promise<void> =>
   try {
     const user = await userModel.findById(userId);
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    res.status(404).json({ message: "User not found" });
     }
-    const objective = user.clase?.objetive;
+    const objective = user?.clase?.objetive;
     res.status(200).json(objective);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error al obtener el objetivo" });
   }
 };
 
@@ -267,7 +267,7 @@ export const deleteObjetive = async (req: Request, res: Response) => {
     await user.save();
     res.status(200).send({ message: "Objetivo eliminado" });
   } catch (error) {
-    res.status(400).send({ message: error.message });
+    res.status(400).send({ message: "Error al eliminar el objetivo" });
   }
 };
 
@@ -276,7 +276,7 @@ export const getUsers = async (req: Request, res: Response) => {
   try {
     res.status(200).json(users);
   } catch (error){
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error al obtener los usuarios" });
   }
 };
 
@@ -304,7 +304,7 @@ export const socialLogin = async (req: Request, res: Response) => {
     res.status(200).json({ success: true, token, userId: user._id, user });
   } catch (error) {
     // Captura el error y envía una respuesta de error
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error al iniciar sesión" });
   }
 };
 

@@ -17,7 +17,7 @@ import {
   deleteMain,
   deleteCooldown,
   socialLogin,
-} from "../controllers/user.controllers.js";
+} from "../controllers/user.controllers";
 
 const userRouter = express.Router();
 
