@@ -1,4 +1,3 @@
-// components/Page.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -17,7 +16,7 @@ const Page = () => {
     <CoolDownPlan key={2} />,
   ];
 
-  const { userId, userName } = React.useContext(Contexto);
+  const { userId } = React.useContext(Contexto);
 
   const scroll = (direction: "left" | "right") => {
     if (direction === "left" && currentSection > 0) {
@@ -28,47 +27,64 @@ const Page = () => {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col h-screen relative">
+    <div className="flex justify-center items-center flex-col relative w-full h-full">
       {!userId ? (
-        <h1 className="text-3xl m-2 text-center">
+        <h1 className="text-3xl m-2 p-2 text-center">
           Debes iniciar sesión para crear tu entrenamiento
         </h1>
       ) : (
         <>
-          <h1 className="text-xl m-2">Bienvenido {userName}</h1>
+          {/* Botón de desplazamiento izquierdo */}
           <button
-            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-blue-200 hover:bg-blue-400 transition-all p-2 rounded-full z-10"
+            className="hidden md:block absolute top-1/2 left-4 transform -translate-y-1/2 bg-blue-200 hover:bg-blue-400 transition-all p-2 rounded-full z-10"
             onClick={() => scroll("left")}
           >
             <LeftIcon />
           </button>
+
+          {/* Contenedor principal para las secciones */}
           <div className="flex overflow-hidden w-full h-full items-center justify-center">
             <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentSection * 100}%)` }}
+              className="flex md:flex-row flex-col transition-transform duration-500 ease-in-out w-full h-full"
+              style={{
+                transform: `translateX(-${currentSection * 100}%)`,
+              }}
             >
-              <div className="flex-none min-w-full flex justify-center items-center">
-                <div className="max-w-[1400px]">
-                  <h1 className="text-4xl font-bold text-blue-500">WarmUp</h1>
-                  {sections[0]}
+              {/* WarmUp Section */}
+              <div className="flex-none w-full h-full md:min-h-screen p-4 flex justify-center items-center">
+                <div className="max-w-[1400px] w-full flex flex-col items-center">
+                  <h1 className="text-4xl font-bold text-blue-500 text-center">
+                    WarmUp
+                  </h1>
+                  <div className="mt-4 w-full items-center justify-center flex">{sections[0]}</div>
                 </div>
               </div>
-              <div className="flex-none min-w-full flex justify-center items-center">
-                <div className="max-w-[1400px]">
-                  <h1 className="text-4xl font-bold text-blue-500">Main</h1>
-                  {sections[1]}
+
+              {/* Main Section */}
+              <div className="flex-none w-full h-full md:min-h-screen p-4 flex justify-center items-center">
+                <div className="max-w-[1400px] w-full flex flex-col items-center">
+                  <h1 className="text-4xl font-bold text-blue-500 text-center">
+                    Main
+                  </h1>
+                  <div className="mt-4 w-full items-center justify-center flex">{sections[1]}</div>
                 </div>
               </div>
-              <div className="flex-none min-w-full flex justify-center items-center">
-                <div className="max-w-[1400px]">
-                  <h1 className="text-4xl font-bold text-blue-500">CoolDown</h1>
-                  {sections[2]}
+
+              {/* CoolDown Section */}
+              <div className="flex-none w-full h-full md:min-h-screen p-4 flex justify-center items-center">
+                <div className="max-w-[1400px] w-full flex flex-col items-center">
+                  <h1 className="text-4xl font-bold text-blue-500 text-center">
+                    CoolDown
+                  </h1>
+                  <div className="mt-4 w-full items-center justify-center flex">{sections[2]}</div>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Botón de desplazamiento derecho */}
           <button
-            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-blue-200 hover:bg-blue-400 transition-all p-2 rounded-full z-10"
+            className="hidden md:block absolute top-1/2 right-4 transform -translate-y-1/2 bg-blue-200 hover:bg-blue-400 transition-all p-2 rounded-full z-10"
             onClick={() => scroll("right")}
           >
             <RightIcon />

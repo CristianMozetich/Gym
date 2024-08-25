@@ -14,7 +14,7 @@ const WarmUpPlan = () => {
   const { warmup, deleteWarmup } = Fetching();
 
   return (
-    <div className="flex h-full max-h-screen m-4 p-4">
+    <div className="md:flex m-4 p-4">
       {warmup.map((ejercicio) => (
         <Card key={ejercicio._id} className="max-w-[600px] min-w-[300px] m-3">
           <CardHeader className="flex">

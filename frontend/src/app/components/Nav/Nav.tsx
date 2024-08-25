@@ -47,7 +47,7 @@ const Nav = () => {
           </NavbarItem>
         )}
       </NavbarContent>
-        
+
       {isMenuOpen ? (
         <>
           <Button
@@ -68,22 +68,33 @@ const Nav = () => {
       {isMenuOpen && (
         <NavbarContent className="flex flex-col md:hidden z-10 absolute h-screen top-16 right-0 w-1/2 bg-slate-300 dark:bg-black bg-opacity-90 backdrop-filter backdrop-blur-xl">
           <NavbarItem className="m-4" isActive>
-            <Link href="/pages/entrenamiento" color="foreground" className="dark:hover:text-green-500 hover:text-blue-500">
+            <Link
+              href="/pages/entrenamiento"
+              color="foreground"
+              className="dark:hover:text-green-500 hover:text-blue-500"
+            >
               Entrenamiento
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Button as={Link} href="/pages/login" variant="flat" className="dark:text-blue-500 text-button">
+            <Button
+              as={Link}
+              href="/pages/login"
+              variant="flat"
+              className="dark:text-blue-500 text-button"
+            >
               Login
             </Button>
           </NavbarItem>
           <NavbarItem>
-            <Button as={Link} href="/pages/registro" variant="flat" className="dark:text-blue-500 text-button">
+            <Button
+              as={Link}
+              href="/pages/registro"
+              variant="flat"
+              className="dark:text-blue-500 text-button"
+            >
               Registrarme
             </Button>
-          </NavbarItem>
-          <NavbarItem>
-            <ThemeSwitcher />
           </NavbarItem>
           {userId && (
             <NavbarItem>
@@ -92,6 +103,9 @@ const Nav = () => {
               </Link>
             </NavbarItem>
           )}
+          <NavbarItem>
+            <ThemeSwitcher />
+          </NavbarItem>
         </NavbarContent>
       )}
 
