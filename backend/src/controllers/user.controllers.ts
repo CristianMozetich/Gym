@@ -1,11 +1,10 @@
-import { userModel } from "../model/user.model";
-import { warmupModel } from "../model/user.model";
-import { objetiveModel } from "../model/user.model";
+import { userModel } from "../src/model/user.model";
+import { warmupModel } from "../src/model/user.model";
+import { objetiveModel } from "../src/model/user.model";
 import { createToken } from "../utils/jwt";
-import { mainModel } from "../model/user.model";
-import { cooldownModel } from "../model/user.model";
+import { mainModel } from "../src/model/user.model";
+import { cooldownModel } from "../src/model/user.model";
 import { Request, Response } from "express";
-
 
 export const newUser = async (req: Request, res: Response) => {
   try {
@@ -234,12 +233,15 @@ export const createObjetive = async (req: Request, res: Response) => {
   }
 };
 
-export const getObjetive = async (req: Request, res: Response): Promise<void> => {
+export const getObjetive = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   const { userId } = req.params;
   try {
     const user = await userModel.findById(userId);
     if (!user) {
-    res.status(404).json({ message: "User not found" });
+      res.status(404).json({ message: "User not found" });
     }
     const objective = user?.clase?.objetive;
     res.status(200).json(objective);
@@ -262,7 +264,6 @@ export const deleteObjetive = async (req: Request, res: Response) => {
       return res.status(404).send({ message: "No se encuentra el objetivo" });
     }
 
-    
     user.clase?.objetive.remove(objectiveId);
     await user.save();
     res.status(200).send({ message: "Objetivo eliminado" });
@@ -275,7 +276,7 @@ export const getUsers = async (req: Request, res: Response) => {
   const users = await userModel.find();
   try {
     res.status(200).json(users);
-  } catch (error){
+  } catch (error) {
     res.status(400).json({ message: "Error al obtener los usuarios" });
   }
 };
@@ -298,7 +299,11 @@ export const socialLogin = async (req: Request, res: Response) => {
     }
 
     // Crea un token para el usuario
-    const token = createToken({ _id: user._id, email: user.email, name: user.name });
+    const token = createToken({
+      _id: user._id,
+      email: user.email,
+      name: user.name,
+    });
 
     // Envía la respuesta exitosa
     res.status(200).json({ success: true, token, userId: user._id, user });
@@ -307,5 +312,3 @@ export const socialLogin = async (req: Request, res: Response) => {
     res.status(400).json({ message: "Error al iniciar sesión" });
   }
 };
-
-

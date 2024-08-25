@@ -1,5 +1,5 @@
 import { validatePassword, createHash } from "./bcrypt";
-import { userModel } from "../model/user.model";
+import { userModel } from "../src/model/user.model";
 import passport from "passport";
 import local from "passport-local";
 
@@ -32,7 +32,7 @@ const initializePassport = () => {
 
           done(null, newUser);
         } catch (error) {
-          console.log('Error al crear el usuario:', error);
+          console.log("Error al crear el usuario:", error);
           done(error);
         }
       }
@@ -54,10 +54,13 @@ const initializePassport = () => {
           if (!user) {
             return done(null, false, { message: "User not found" });
           }
-          if (typeof user.password !== 'string') {
+          if (typeof user.password !== "string") {
             return done(null, false, { message: "User password is invalid" });
           }
-          const isPasswordValid = await validatePassword(password, user.password);
+          const isPasswordValid = await validatePassword(
+            password,
+            user.password
+          );
           if (!isPasswordValid) {
             return done(null, false, { message: "Incorrect password" });
           }
@@ -69,7 +72,6 @@ const initializePassport = () => {
       }
     )
   );
-
 
   // Inicializar la sesión del usuario
   passport.serializeUser((user: any, done) => {
