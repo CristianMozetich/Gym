@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3000', // Reemplaza esto con la URL de tu aplicación frontend
+  origin: 'https://180funcional.vercel.app/', // Reemplaza esto con la URL de tu aplicación frontend
   methods: ['GET', 'POST', 'DELETE', 'PUT'], // Métodos permitidos
   allowedHeaders: ['Content-Type'], // Encabezados permitidos
 }));
