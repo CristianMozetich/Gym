@@ -356,7 +356,7 @@ export const Fetching = () => {
       getMain();
       getCooldown();
     }
-  }, [userId]);
+  }, [userId, getCooldown, getMain, getWarmup]);
 
   return {
     postDataRegister,

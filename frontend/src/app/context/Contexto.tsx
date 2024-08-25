@@ -20,7 +20,7 @@ interface ContextoType {
 declare module "next-auth" {
   interface Session {
     user: {
-      id: string; // Añadir el campo id
+      id: string; 
       name: string;
       email: string;
       image?: string;
