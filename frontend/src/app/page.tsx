@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Button, Link } from "@nextui-org/react";
 export default function Home() {
   return (
-    <main className="min-h-screen max-w-full gap-6 grid grid-cols-2">
+    <main className="min-h-screen max-w-full gap-6 lg:grid lg:grid-cols-2 items-center justify-center flex flex-col overflow-hidden">
       <div className="flex items-center justify-center m-3">
         <Image
           src="/img/funcional.jpg"
@@ -14,7 +14,7 @@ export default function Home() {
       </div>
       <div className="flex items-center justify-start m-3">
         <div className="flex gap-4 flex-col justify-center max-w-lg">
-          <h1 className="text-8xl tracking-wider">
+          <h1 className="md:text-8xl text-6xl tracking-wider">
             <span className="text-button dark:text-slate-100">180 </span>
             <span className="text-blue-500 dark:text-green-500">Funcional</span>
           </h1>

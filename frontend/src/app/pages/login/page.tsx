@@ -13,12 +13,14 @@ const Page = () => {
   return (
     <div className="h-screen w-full relative">
       <Image src="/img/gym.jpg" alt="logo" layout="fill" objectFit="cover" />
-      <div className="absolute m-4 w-1/2 h-5/6 flex items-center justify-center flex-col rounded-xl right-3 bg-slate-200 dark:bg-slate-900">
+      <div className="absolute m-4 md:w-1/2 h-5/6 flex items-center justify-center flex-col rounded-xl right-3 bg-slate-200 dark:bg-slate-900">
         <div className="w-lg flex flex-col items-center">
-          <h1 className="text-slate-800 text-4xl dark:text-slate-200">
-            Bienvenido a 180 Funcional
+          <h1 className="text-slate-800 text-3xl dark:text-slate-200 tracking-wider text-center">
+            Bienvenido a{" "}
+            <span className="text-button dark:text-slate-100">180 </span>
+            <span className="text-blue-500 dark:text-green-500">Funcional</span>
           </h1>
-          <span className="text-slate-800 dark:text-slate-200">
+          <span className="text-slate-800 dark:text-slate-200 text-center">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
             a, Lorem
           </span>
@@ -26,8 +28,13 @@ const Page = () => {
         <Login />
         <Divider orientation="horizontal" className="w-1/2" />
         <div className="m-4">
-          <span className="text-slate-800 dark:text-slate-200">¿No tienes cuenta?</span>
-          <Link href={"/pages/registro"} className="text-slate-800 dark:text-slate-200 font-bold m-2">
+          <span className="text-slate-800 dark:text-slate-200">
+            ¿No tienes cuenta?
+          </span>
+          <Link
+            href={"/pages/registro"}
+            className="text-slate-800 dark:text-slate-200 font-bold m-2"
+          >
             Registrate
           </Link>
         </div>

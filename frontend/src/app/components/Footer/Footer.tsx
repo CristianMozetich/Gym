@@ -7,15 +7,15 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="w-full h-96 justify-center grid grid-cols-12 bg-slate-50 dark:bg-gray-950 dark:text-white p-8">
-      <div className="col-span-3 flex m-3 justify-start">
+    <footer className="w-full h-full justify-center flex flex-col md:grid md:grid-cols-12 bg-slate-50 dark:bg-gray-950 dark:text-white p-4">
+      <div className="col-span-3 flex m-2 justify-start">
         <h1 className="text-5xl">
           <span className="text-button dark:text-slate-100">180</span>{" "}
           <span className="text-blue-500 dark:text-green-500">Funcional</span>
         </h1>
       </div>
-      <div className="col-span-9 flex justify-between m-6 gap-8 w-4/5">
-        <div className="m-5 flex flex-col gap-2">
+      <div className="col-span-9 md:flex justify-between m-6 gap-8 w-4/5">
+        <div className="m-2 flex flex-col gap-2">
           <h2 className="text-xl">Córdoba, Argentina</h2>
           <h2>
             Desarrollado por{" "}
@@ -28,7 +28,7 @@ const Footer = () => {
             </Link>
           </h2>
         </div>
-        <div className="m-5 flex flex-col gap-4">
+        <div className="m-2 flex flex-col gap-4">
           <div className="flex gap-2 items-center">
             <h2 className="hover:text-blue-500 cursor-pointer">Linkedin</h2>
             <LinkedInIcon />
@@ -42,7 +42,7 @@ const Footer = () => {
             <FaceIcon />
           </div>
         </div>
-        <div className="m-5">
+        <div className="m-2">
           <form className="flex flex-col gap-2">
             <h1>Dejanos tu mensaje</h1>
             <input className="border border-solid rounded-lg" type="text" />

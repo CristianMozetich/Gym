@@ -11,12 +11,20 @@ import {
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "../themeSwitcher";
 import { signOut } from "next-auth/react";
-
+import { Contexto } from "@/app/context/Contexto";
+import MenuIcon from "@/app/icons/MenuIcon";
+import CloseMenu from "@/app/icons/CloseMenu";
+import { useState } from "react";
 const Nav = () => {
   const logout = () => {
     localStorage.removeItem("token");
     signOut({ callbackUrl: "/" });
   };
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { userId } = React.useContext(Contexto);
+
   return (
     <Navbar shouldHideOnScroll>
       <NavbarBrand>
@@ -25,36 +33,97 @@ const Nav = () => {
           <span className="text-blue-500 dark:text-green-500">FUNCIONAL</span>
         </Link>
       </NavbarBrand>
-      <NavbarContent className="sm:flex hidden gap-4 justify-center">
+      <NavbarContent className="md:flex hidden gap-4 justify-center">
         <NavbarItem isActive>
           <Link href="/pages/entrenamiento" color="foreground">
             Entrenamiento
           </Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/pages/paneladmin">
-            Panel Admin
-          </Link>
-        </NavbarItem>
+        {userId && (
+          <NavbarItem>
+            <Link color="foreground" href="/pages/paneladmin">
+              Panel Admin
+            </Link>
+          </NavbarItem>
+        )}
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="lg:flex hidden">
-          <Button>
-            {" "}
-            <Link href="/pages/registro">Registrarme</Link>
+        
+      {isMenuOpen ? (
+        <>
+          <Button
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <CloseMenu />
           </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="primary" href="/pages/login" variant="flat">
-            Login
-          </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <Button onClick={() => logout()}>Sing Out</Button>
-        </NavbarItem>
-        <NavbarItem>
-          <ThemeSwitcher />
-        </NavbarItem>
+        </>
+      ) : (
+        <Button
+          className="md:hidden"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <MenuIcon />
+        </Button>
+      )}
+      {isMenuOpen && (
+        <NavbarContent className="flex flex-col md:hidden z-10 absolute h-screen top-16 right-0 w-1/2 bg-slate-300 dark:bg-black bg-opacity-90 backdrop-filter backdrop-blur-xl">
+          <NavbarItem className="m-4" isActive>
+            <Link href="/pages/entrenamiento" color="foreground" className="dark:hover:text-green-500 hover:text-blue-500">
+              Entrenamiento
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Button as={Link} href="/pages/login" variant="flat" className="dark:text-blue-500 text-button">
+              Login
+            </Button>
+          </NavbarItem>
+          <NavbarItem>
+            <Button as={Link} href="/pages/registro" variant="flat" className="dark:text-blue-500 text-button">
+              Registrarme
+            </Button>
+          </NavbarItem>
+          <NavbarItem>
+            <ThemeSwitcher />
+          </NavbarItem>
+          {userId && (
+            <NavbarItem>
+              <Link color="foreground" href="/pages/paneladmin">
+                Panel Admin
+              </Link>
+            </NavbarItem>
+          )}
+        </NavbarContent>
+      )}
+
+      <NavbarContent justify="end" className="hidden md:flex">
+        {!userId ? (
+          <>
+            <NavbarItem>
+              <Button as={Link} href="/pages/login" variant="flat">
+                Login
+              </Button>
+            </NavbarItem>
+            <NavbarItem>
+              <Button as={Link} href="/pages/registro" variant="flat">
+                Registrarme
+              </Button>
+            </NavbarItem>
+            <NavbarItem>
+              <ThemeSwitcher />
+            </NavbarItem>
+          </>
+        ) : (
+          <>
+            <NavbarItem>
+              <Button onClick={logout} color="primary" variant="flat">
+                Sing Out
+              </Button>
+            </NavbarItem>
+            <NavbarItem>
+              <ThemeSwitcher />
+            </NavbarItem>
+          </>
+        )}
       </NavbarContent>
     </Navbar>
   );

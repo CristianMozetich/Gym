@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export const Validation = () => {
   const [errorBlurName, setErrorBlurName] = useState<string>("");
   const [errorBlurEmail, setErrorBlurEmail] = useState<string>("");
+  const [errorBlurPassword, setErrorBlurPassword] = useState<string>("");
 
   const onBlurName = (e: React.FormEvent<HTMLInputElement>) => {
     const name = e.currentTarget.value;
@@ -22,6 +23,15 @@ export const Validation = () => {
     }
   }
 
-  return { errorBlurName, onBlurName, errorBlurEmail, onBlurEmail };
+  const onBlurPassword = (e: React.FormEvent<HTMLInputElement>) => {
+    const password = e.currentTarget.value;
+    if(password === ""){
+        setErrorBlurPassword("Password is required")
+    } else {
+        setErrorBlurPassword("")
+    }
+  }
+
+  return { errorBlurName, onBlurName, errorBlurEmail, onBlurEmail, errorBlurPassword, onBlurPassword };
 
 };

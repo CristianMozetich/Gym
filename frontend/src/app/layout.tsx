@@ -25,11 +25,9 @@ export default function RootLayout({
         <NextUIProvider>
           <NextThemesProvider attribute="class" defaultTheme="dark">
             <ClientWrapper>
-
-                <Nav />
-                {children}
-                <Footer />
-
+              <Nav />
+              {children}
+              <Footer />
             </ClientWrapper>
           </NextThemesProvider>
         </NextUIProvider>
