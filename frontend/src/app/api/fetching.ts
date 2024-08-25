@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { Contexto } from "../context/Contexto";
 
 interface EjerciciosType {
@@ -208,7 +208,7 @@ export const Fetching = () => {
   };
 
   //Get Ejercicios
-  const getWarmup = async () => {
+  const getWarmup = useCallback( async () => {
     const response = await fetch(`http://localhost:1000/${userId}/getWarmup`, {
       method: "GET",
       headers: {
@@ -224,9 +224,9 @@ export const Fetching = () => {
     } catch {
       console.log("no se pudieron obtener los ejercicios");
     }
-  };
+  },[userId]);
 
-  const getMain = async () => {
+  const getMain = useCallback( async () => {
     const response = await fetch(`http://localhost:1000/${userId}/getMain`, {
       method: "GET",
       headers: {
@@ -242,9 +242,9 @@ export const Fetching = () => {
     } catch {
       console.log("no se pudieron obtener los ejercicios");
     }
-  };
+  },[userId]);
 
-  const getCooldown = async () => {
+  const getCooldown = useCallback( async () => {
     const response = await fetch(
       `http://localhost:1000/${userId}/getCooldown`,
       {
@@ -263,7 +263,7 @@ export const Fetching = () => {
     } catch {
       console.log("no se pudieron obtener los ejercicios");
     }
-  };
+  },[userId]);
 
   // POST OBJETIVOS
   const postObjetivos = async (e: any) => {
@@ -356,7 +356,7 @@ export const Fetching = () => {
       getMain();
       getCooldown();
     }
-  }, [userId]);
+  }, [userId, getCooldown, getMain, getWarmup]);
 
   return {
     postDataRegister,
