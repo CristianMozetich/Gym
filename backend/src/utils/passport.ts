@@ -1,5 +1,5 @@
 import { validatePassword, createHash } from "./bcrypt";
-import { userModel } from "../src/model/user.model";
+import { userModel } from "../model/user.model";
 import passport from "passport";
 import local from "passport-local";
 

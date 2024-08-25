@@ -1,9 +1,9 @@
-import { userModel } from "../src/model/user.model";
-import { warmupModel } from "../src/model/user.model";
-import { objetiveModel } from "../src/model/user.model";
+import { userModel } from "../model/user.model";
+import { warmupModel } from "../model/user.model";
+import { objetiveModel } from "../model/user.model";
 import { createToken } from "../utils/jwt";
-import { mainModel } from "../src/model/user.model";
-import { cooldownModel } from "../src/model/user.model";
+import { mainModel } from "../model/user.model";
+import { cooldownModel } from "../model/user.model";
 import { Request, Response } from "express";
 
 export const newUser = async (req: Request, res: Response) => {
