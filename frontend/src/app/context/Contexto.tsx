@@ -17,6 +17,16 @@ interface ContextoType {
   userName: string;
   setUserName: Dispatch<SetStateAction<string>>;
 }
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string; // Añadir el campo id
+      name: string;
+      email: string;
+      image?: string;
+    };
+  }
+}
 interface JwtPayload {
   user: {
     _id: string;
