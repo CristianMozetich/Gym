@@ -1,8 +1,8 @@
 import express from "express";
 import "dotenv/config";
-import userRouter from "../src/routes/user.routes";
+import userRouter from "./routes/user.routes";
 import mongoose from "mongoose";
-import initializePassport from "../src/utils/passport";
+import initializePassport from "./utils/passport";
 import passport from "passport";
 import session from "express-session";
 import cors from "cors";
@@ -13,11 +13,13 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://180funcional.vercel.app/", // Reemplaza esto con la URL de tu aplicación frontend
-    methods: ["GET", "POST", "DELETE", "PUT"], // Métodos permitidos
-    allowedHeaders: ["Content-Type"], // Encabezados permitidos
+    origin: ["https://180funcional.vercel.app", "http://localhost:3000"],
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
   })
 );
+
 app.use(
   session({
     secret: process.env.SESSION || "",
