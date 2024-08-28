@@ -12,7 +12,7 @@ export const FetchLogin = () => {
     const data = Object.fromEntries(formData);
 
     try {
-      const response = await fetch("https://https://one80-server.onrender.com/login", {
+      const response = await fetch("https://one80-server.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
