@@ -18,7 +18,7 @@ const handler = NextAuth({
   callbacks: {
     async signIn({ user, account }): Promise<boolean> {
       try {
-        const response = await fetch('http://localhost:1000/auth/socialLogin', {
+        const response = await fetch('https://one80-server.onrender.com/auth/socialLogin', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
