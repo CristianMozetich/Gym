@@ -49,7 +49,7 @@ export const Fetching = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch("https://https://one80-server.onrender.com/register", {
+    const response = await fetch("https://one80-server.onrender.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export const Fetching = () => {
     const data = Object.fromEntries(formData);
 
     const response = await fetch(
-      `http://https://one80-server.onrender.com/${userId}/createWarmup`,
+      `https://one80-server.onrender.com/${userId}/createWarmup`,
       {
         method: "POST",
         headers: {
@@ -97,7 +97,7 @@ export const Fetching = () => {
   const deleteWarmup = async (warmupId: string) => {
     try {
       const response = await fetch(
-        `http://https://one80-server.onrender.com/deleteWarmup/${userId}/${warmupId}`,
+        `https://one80-server.onrender.com/deleteWarmup/${userId}/${warmupId}`,
         {
           method: "DELETE",
           headers: {
@@ -120,7 +120,7 @@ export const Fetching = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch(`http://https://one80-server.onrender.com/${userId}/createMain`, {
+    const response = await fetch(`https://one80-server.onrender.com/${userId}/createMain`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -141,7 +141,7 @@ export const Fetching = () => {
   const deleteMain = async (mainId: string) => {
     try {
       const response = await fetch(
-        `http://https://one80-server.onrender.com/deleteMain/${userId}/${mainId}`,
+        `https://one80-server.onrender.com/deleteMain/${userId}/${mainId}`,
         {
           method: "DELETE",
           headers: {
@@ -166,7 +166,7 @@ export const Fetching = () => {
     const data = Object.fromEntries(formData);
 
     const response = await fetch(
-      `http://https://one80-server.onrender.com/${userId}/createCooldown`,
+      `https://one80-server.onrender.com/${userId}/createCooldown`,
       {
         method: "POST",
         headers: {
@@ -189,7 +189,7 @@ export const Fetching = () => {
   const deleteCooldown = async (cooldownId: string) => {
     try {
       const response = await fetch(
-        `http://https://one80-server.onrender.com/deleteCooldown/${userId}/${cooldownId}`,
+        `https://one80-server.onrender.com/deleteCooldown/${userId}/${cooldownId}`,
         {
           method: "DELETE",
           headers: {
@@ -209,7 +209,7 @@ export const Fetching = () => {
 
   //Get Ejercicios
   const getWarmup = useCallback( async () => {
-    const response = await fetch(`http://https://one80-server.onrender.com/${userId}/getWarmup`, {
+    const response = await fetch(`https://one80-server.onrender.com/${userId}/getWarmup`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -227,7 +227,7 @@ export const Fetching = () => {
   },[userId]);
 
   const getMain = useCallback( async () => {
-    const response = await fetch(`http://https://one80-server.onrender.com/${userId}/getMain`, {
+    const response = await fetch(`https://one80-server.onrender.com/${userId}/getMain`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -246,7 +246,7 @@ export const Fetching = () => {
 
   const getCooldown = useCallback( async () => {
     const response = await fetch(
-      `http://https://one80-server.onrender.com/${userId}/getCooldown`,
+      `https://one80-server.onrender.com/${userId}/getCooldown`,
       {
         method: "GET",
         headers: {
@@ -279,7 +279,7 @@ export const Fetching = () => {
 
     try {
       const response = await fetch(
-        `http://https://one80-server.onrender.com/${userId}/createObjetive`,
+        `https://one80-server.onrender.com/${userId}/createObjetive`,
         {
           method: "POST",
           headers: {
@@ -306,7 +306,7 @@ export const Fetching = () => {
   //GET OBJETIVOS
   const getObjetivos = async () => {
     const response = await fetch(
-      `http://https://one80-server.onrender.com/${userId}/getObjetive`,
+      `https://one80-server.onrender.com/${userId}/getObjetive`,
       {
         method: "GET",
         headers: {
@@ -327,7 +327,7 @@ export const Fetching = () => {
 
   const deleteObjetive = async (objetiveId: string) => {
     const response = await fetch(
-      `http://https://one80-server.onrender.com/deleteObjetive/${userId}/${objetiveId}`,
+      `https://one80-server.onrender.com/deleteObjetive/${userId}/${objetiveId}`,
       {
         method: "DELETE",
         headers: {
