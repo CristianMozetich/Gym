@@ -3,7 +3,6 @@ import GoogleProvider from "next-auth/providers/google";
 import facebookProvider from "next-auth/providers/facebook";
 import "dotenv/config";
 
-
 const handler = NextAuth({
   providers: [
     GoogleProvider({
@@ -18,17 +17,20 @@ const handler = NextAuth({
   callbacks: {
     async signIn({ user, account }): Promise<boolean> {
       try {
-        const response = await fetch('https://one80-server.onrender.com/auth/socialLogin', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: user.email,
-            name: user.name,
-            provider: account?.provider,
-          }),
-        });
+        const response = await fetch(
+          "https://one80-server.onrender.com/auth/socialLogin",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: user.email,
+              name: user.name,
+              provider: account?.provider,
+            }),
+          }
+        );
 
         const data = await response.json();
         if (data.success) {
@@ -43,23 +45,18 @@ const handler = NextAuth({
       }
     },
     async jwt({ token, user }) {
-
       if (user) {
         token.id = user.id;
       }
       return token;
     },
     async session({ session, token }: any) {
-      if(session.user){
+      if (session.user) {
         session.user.id = token.id;
-        return session;
       }
-
+      return session;
     },
   },
-
 });
-
-
 
 export { handler as GET, handler as POST };
