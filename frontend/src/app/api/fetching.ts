@@ -49,7 +49,7 @@ export const Fetching = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch("http://https://one80-server.onrender.com/register", {
+    const response = await fetch("https://https://one80-server.onrender.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
