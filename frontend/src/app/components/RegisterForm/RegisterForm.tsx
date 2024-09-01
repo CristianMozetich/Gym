@@ -4,13 +4,13 @@ import { Fetching } from "../../api/fetching";
 import { useRef } from "react";
 import { Validation } from "./validation";
 import { Input } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
-import { Divider } from "@nextui-org/react";
+import { Button, Divider } from "@nextui-org/react";
 import { signIn } from "next-auth/react";
 import GoogleIcon from "@/app/icons/GoogleIcon";
 import FaceIcon from "@/app/icons/FaceIcon";
 
 const Register: React.FC = () => {
+  const [showPassword, setShowPassword] = React.useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const {
     errorBlurName,
@@ -22,6 +22,11 @@ const Register: React.FC = () => {
   } = Validation();
 
   const { postDataRegister } = Fetching();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <form
       ref={formRef}
@@ -39,6 +44,7 @@ const Register: React.FC = () => {
             neque?
           </h3>
         </div>
+
         <Input
           className="rounded-lg m-2 p-2"
           type="text"
@@ -47,14 +53,26 @@ const Register: React.FC = () => {
           onChange={onBlurName}
         />
         <p className="text-red-500">{errorBlurName}</p>
-        <Input
-          className="rounded-lg m-2 p-2"
-          type="password"
-          name="password"
-          placeholder="password"
-          onChange={onBlurPassword}
-        />
+
+        {/* Contenedor para el campo de contraseña con el botón de visibilidad */}
+        <div className="relative w-full">
+          <Input
+            className="rounded-lg p-2 w-full"
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="password"
+            onChange={onBlurPassword}
+          />
+          <button
+            type="button"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? "🙈" : "👁️"}
+          </button>
+        </div>
         <p className="text-red-500">{errorBlurPassword}</p>
+
         <Input
           className="rounded-lg m-2 p-2"
           type="email"
@@ -63,6 +81,7 @@ const Register: React.FC = () => {
           onChange={onBlurEmail}
         />
         <p className="text-red-500">{errorBlurEmail}</p>
+
         <Button
           className="w-80 m-2 bg-button text-slate-50"
           color="primary"
@@ -70,7 +89,9 @@ const Register: React.FC = () => {
         >
           Registrarme
         </Button>
+
         <Divider />
+
         <Button
           className="w-80 m-2 bg-button text-slate-50"
           color="primary"
@@ -79,6 +100,7 @@ const Register: React.FC = () => {
           <GoogleIcon />
           Ingresa con Google
         </Button>
+
         <Button
           className="w-80 m-2 bg-button text-slate-50"
           color="primary"
@@ -93,3 +115,4 @@ const Register: React.FC = () => {
 };
 
 export default Register;
+
