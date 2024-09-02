@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import facebookProvider from "next-auth/providers/facebook";
 import "dotenv/config";
-
+const baseUrl = process.env.NEXTAUTH_URL;
 const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -18,20 +18,17 @@ const handler = NextAuth({
   callbacks: {
     async signIn({ user, account }): Promise<boolean> {
       try {
-        const response = await fetch(
-          process.env.NEXTAUTH_URL + "/auth/socialLogin",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: user.email,
-              name: user.name,
-              provider: account?.provider,
-            }),
-          }
-        );
+        const response = await fetch(`${baseUrl}/auth/socialLogin`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+            name: user.name,
+            provider: account?.provider,
+          }),
+        });
 
         const data = await response.json();
         if (data.success) {
