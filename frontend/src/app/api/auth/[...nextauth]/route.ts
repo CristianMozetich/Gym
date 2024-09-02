@@ -19,7 +19,7 @@ const handler = NextAuth({
     async signIn({ user, account }): Promise<boolean> {
       try {
         const response = await fetch(
-          "https://one80-server.onrender.com/auth/socialLogin",
+          process.env.NEXTAUTH_URL + "/auth/socialLogin",
           {
             method: "POST",
             headers: {
