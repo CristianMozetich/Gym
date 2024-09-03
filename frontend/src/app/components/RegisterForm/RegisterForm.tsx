@@ -39,9 +39,9 @@ const Register: React.FC = () => {
             180{" "}
             <span className="text-blue-500 dark:text-green-500">FUNCIONAL</span>
           </h1>
-          <h3 className="text-slate-800 dark:text-slate-200 text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-            neque?
+          <h3 className="text-slate-800 dark:text-slate-200 text-center m-2 tracking-wide">
+            Crea tu cuenta y empieza a diseñar entrenamientos personalizados en
+            minutos
           </h3>
         </div>
 
@@ -115,4 +115,3 @@ const Register: React.FC = () => {
 };
 
 export default Register;
-

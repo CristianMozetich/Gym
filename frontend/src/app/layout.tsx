@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
 import { NextUIProvider } from "@nextui-org/react";
@@ -7,7 +7,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import ClientWrapper from "./context/ClientWrapper";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "180 Funcional",

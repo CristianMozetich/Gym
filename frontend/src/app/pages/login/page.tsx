@@ -20,9 +20,9 @@ const Page = () => {
             <span className="text-button dark:text-slate-100">180 </span>
             <span className="text-blue-500 dark:text-green-500">Funcional</span>
           </h1>
-          <span className="text-slate-800 dark:text-slate-200 text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
-            a, Lorem
+          <span className="text-slate-800 dark:text-slate-200 text-center m-2 tracking-wide">
+            Accede a tu cuenta para diseñar y gestionar entrenamientos
+            personalizados
           </span>
         </div>
         <Login />
