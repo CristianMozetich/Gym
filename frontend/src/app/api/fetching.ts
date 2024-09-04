@@ -87,6 +87,7 @@ export const Fetching = () => {
       if (response.status === 200) {
         const datos = await response.json();
         console.log(datos);
+
         return datos;
       }
     } catch {
@@ -120,13 +121,16 @@ export const Fetching = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    const response = await fetch(`https://one80-server.onrender.com/${userId}/createMain`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      `https://one80-server.onrender.com/${userId}/createMain`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
     try {
       if (response.status === 200) {
         const datos = await response.json();
@@ -208,13 +212,16 @@ export const Fetching = () => {
   };
 
   //Get Ejercicios
-  const getWarmup = useCallback( async () => {
-    const response = await fetch(`https://one80-server.onrender.com/${userId}/getWarmup`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  const getWarmup = useCallback(async () => {
+    const response = await fetch(
+      `https://one80-server.onrender.com/${userId}/getWarmup`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     try {
       if (response.status === 200) {
         const datos = await response.json();
@@ -224,15 +231,18 @@ export const Fetching = () => {
     } catch {
       console.log("no se pudieron obtener los ejercicios");
     }
-  },[userId]);
+  }, [userId]);
 
-  const getMain = useCallback( async () => {
-    const response = await fetch(`https://one80-server.onrender.com/${userId}/getMain`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  const getMain = useCallback(async () => {
+    const response = await fetch(
+      `https://one80-server.onrender.com/${userId}/getMain`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     try {
       if (response.status === 200) {
         const datos = await response.json();
@@ -242,9 +252,9 @@ export const Fetching = () => {
     } catch {
       console.log("no se pudieron obtener los ejercicios");
     }
-  },[userId]);
+  }, [userId]);
 
-  const getCooldown = useCallback( async () => {
+  const getCooldown = useCallback(async () => {
     const response = await fetch(
       `https://one80-server.onrender.com/${userId}/getCooldown`,
       {
@@ -263,7 +273,7 @@ export const Fetching = () => {
     } catch {
       console.log("no se pudieron obtener los ejercicios");
     }
-  },[userId]);
+  }, [userId]);
 
   // POST OBJETIVOS
   const postObjetivos = async (e: any) => {
