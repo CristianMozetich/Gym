@@ -5,6 +5,8 @@ import Footer from "./components/Footer/Footer";
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import ClientWrapper from "./context/ClientWrapper";
+import Script from "next/script";
+import Image from "next/image";
 import "./globals.css";
 
 const inter = Montserrat({ subsets: ["latin"] });
@@ -19,9 +21,42 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const fbPixelId = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
   return (
     <html lang="en">
+     <head>
+        {/* Añadimos el Script del Pixel de Meta en el head */}
+        {fbPixelId && (
+          <Script
+            id="fb-pixel"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                !function(f,b,e,v,n,t,s)
+                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '${fbPixelId}');
+                fbq('track', 'PageView');
+              `,
+            }}
+          />
+        )}
+      </head>
       <body className={`${inter.className} flex flex-col min-h-screen`}>
+      <noscript>
+          <Image
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${fbPixelId}&ev=PageView&noscript=1`}
+            alt="facebook pixel"
+          />
+        </noscript>
         <NextUIProvider>
           <NextThemesProvider attribute="class" defaultTheme="dark">
             <ClientWrapper>
